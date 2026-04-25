@@ -1,0 +1,26 @@
+
+
+<div class="card settings mb-0">
+<form method="post" 
+	 hx-post="{% url 'accounts:saveuser' %}"
+	 hx-target="#user-table-body"
+	 hx-swap="beforeend"
+     hx-on::after-request="this.reset()"
+	 enctype="multipart/form-data">
+
+	 {% csrf_token %}
+
+	 {{ form.errors }}
+
+	 <div class="row">
+		{% for field in form %}
+		<div class="col">
+			{{ field }}
+		</div>
+		{% endfor %}
+		<div class="col">
+			<button type="submit" class="btn btn-primary btn-round">Subscribe</button>
+		</div>
+	</div>
+</form>
+</div>

@@ -1,0 +1,113 @@
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+        .color-strips-container {
+            display: flex;
+            height: 5px; /* Adjust the height as needed */
+            overflow: hidden;
+        }
+
+        .color-strip {
+            flex: 1;
+        }
+
+        /* Define your colors */
+        .color-strip:nth-child(1) {
+            background-color: red;
+        }
+
+        .color-strip:nth-child(2) {
+            background-color: blue;
+        }
+
+        .color-strip:nth-child(3) {
+            background-color: green;
+        }
+
+
+        .color-strip:nth-child(4) {
+            background-color: #a2ed56;
+        }
+
+
+        .color-strip:nth-child(5) {
+    background-color: orange;
+        }
+
+
+        .color-strip:nth-child(6) {
+            background-color: #83e4e2;
+        }
+
+
+        .color-strip:nth-child(7) {
+    border-left-color: orange;
+        }
+
+
+        .color-strip:nth-child(8) {
+    background-color: pink;
+        }
+
+
+ol.process-chart > li:nth-of-type(6n+1) {
+}
+
+ol.process-chart > li:nth-of-type(6n+1):after {
+}
+
+/*** SECONDARY ***/
+ol.process-chart > li:nth-of-type(6n+2) {
+}
+
+ol.process-chart > li:nth-of-type(6n+2):after {
+}
+
+/*** TERTIARY ***/
+ol.process-chart > li:nth-of-type(6n+3) {
+}
+
+ol.process-chart > li:nth-of-type(6n+3):after {
+    border-left-color: #fd6470;
+}
+
+/*** QUATERNARY ***/
+ol.process-chart > li:nth-of-type(6n+4) {
+    background-color: #fca858;
+}
+
+ol.process-chart > li:nth-of-type(6n+4):after {
+    border-left-color: #fca858;
+}
+
+/*** QUINARY ***/
+ol.process-chart > li:nth-of-type(6n+5) {
+    background-color: #fddc32;
+}
+
+ol.process-chart > li:nth-of-type(6n+5):after {
+    border-left-color: #fddc32;
+}
+
+ol.process-chart > li:nth-of-type(6n+6) {
+    background-color: #fddc32;
+}
+
+ol.process-chart > li:nth-of-type(6n+6):after {
+    border-left-color: #fddc32;
+}
+
+        /* Add more color-strip styles as needed */
+    </style>
+    <div class="color-strips-container">
+        <div class="color-strip"></div>
+        <div class="color-strip"></div>
+        <div class="color-strip"></div>
+        <div class="color-strip"></div>
+        <div class="color-strip"></div>
+        <div class="color-strip"></div>
+        <div class="color-strip"></div>
+        <div class="color-strip"></div>
+        <!-- Add more color strips here -->
+    </div>

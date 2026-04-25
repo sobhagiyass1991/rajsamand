@@ -1,0 +1,87 @@
+<table class="table" id="userdetails">
+<thead class="thead-dark">
+</thead>
+<tbody>
+<tr><th  colspan="3" scope="col"> A. Account Information	</th></tr>
+<tr>
+	<th scope="row"> 1.</th>
+	<td> Username : </td>
+	<td> {{ user.username }} </td>
+	<th scope="row"> 2.</th>
+	<td> Password  : </td>
+	<td> {% if user.password %} ********* {% endif %}	</td>
+</tr>
+<tr>
+	<th scope="row"> 3.</th>
+	<td> Email id  : </td>
+	<td> {{ user.email }} </td>
+	<th scope="row">4.</th>
+	<td>Account type   : </td>
+	<td> {{ user.account_type }} </td>
+</tr>
+<tr>
+	<th scope="row">5.</th>
+	<td>Account type   : </td>
+	<td> {{ user.account_type }} </td>
+	<th scope="row">6.</th>
+	<td> Status  : </td>
+	<td>  {{ user.status }}	</td>
+</tr>
+<tr><th  colspan="3" scope="col">B. Activity / System Info	</th></tr>
+<tr>
+	<th scope="row">7.</th>
+	<td> Last Login : </td>
+	<td> {{ user.last_login }} </td>
+	<th scope="row">8.</th>
+	<td> Date Joined : </td>
+	<td> {{ user.date_joined }}</td>
+</tr>
+<tr><th  colspan="3" scope="col">C. System Identifiers	</th></tr>
+<tr>
+	<th scope="row">9.</th>
+	<td> Srijan Key : </td>
+	<td> {{ user.srijan_key }} </td>
+	<th scope="row">10.</th>
+	<td> Srijan ID : </td>
+	<td>{{ user.srijan_id }} </td>
+</tr>
+<tr><th  colspan="3" scope="col">C. Personal Information	</th></tr>
+<tr>
+	<th scope="row">11.</th>
+	<td> Address : </td>
+	<td> {{ user.address }} </td>
+	<th scope="row">12.</th>
+	<td> Gender : </td>
+	<td>{{ user.gender }} </td>
+</tr>
+
+<tr>
+	<th scope="row">13.</th>
+	<td> URL  : </td>
+	<td> {{ user.url }} </td>
+	<th scope="row">14.</th>
+	<td> Locale : </td>
+	<td>{{ user.locale}} </td>
+</tr>
+
+<tr>
+	<th scope="row">15.</th>
+	<td> Profile Pic  : </td>
+	<td> {% if user.profile_pic %}
+    <img src="{{ user.profile_pic.url }}">
+{% else %}
+    <img src="/static/default.png">
+{% endif %}	 </td>
+</tr>
+<tr>
+	<th scope="row">16.</th>
+	<td> Mobile Number  : </td>
+	<td> {{ user.mobile }} </td>
+	<th scope="row">17.</th>
+	<td> Date of Birth : </td>
+	<td>{{ user.dob }} </td>
+</tr>
+
+</tbody>
+</table>
+

@@ -1,0 +1,190 @@
+{% load static %}
+
+<div id="page-loader">
+  <div class="loader-box">
+    <!-- Center Logo -->
+    <div class="center-image">
+      <img src="{% static 'assets/img/logo02.png' %}" alt="Rajsamand Logo">
+    </div>
+
+    <!-- Circular Text Animation -->
+    <svg class="text-ring" viewBox="0 0 400 400">
+      <defs>
+        <path id="circlePath" d="M200,50 a150,150 0 1,1 0,300 a150,150 0 1,1 0,-300" />
+        <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#ff007f" />
+          <stop offset="50%" stop-color="#ffcc00" />
+          <stop offset="100%" stop-color="#00e1ff" />
+        </linearGradient>
+      </defs>
+      <g class="rotator">
+        <text dy="10" class="ring-text">
+          <textPath href="#circlePath">
+            🌸 Save Girl Child • 📚 Educate Child • 🌿 Save Environment • 💖 Smart Rajsamand • 
+          </textPath>
+        </text>
+      </g>
+    </svg>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+      <div class="progress-text" id="progress-text">0%</div>
+    </div>
+
+    <div class="loader-caption">कृपया प्रतीक्षा करें...</div>
+  </div>
+</div>
+
+<style>
+/* Loader Background */
+#page-loader {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #ffffff 40%, #f3f3f3 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+/* Loader Box */
+.loader-box {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Center Logo */
+.center-image {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+}
+
+.center-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Circular Text */
+.text-ring {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ring-text {
+  font-size: 17px;
+  font-weight: bold;
+  fill: url(#textGradient);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  filter: drop-shadow(0 0 4px #fff);
+  animation: glowPulse 3s ease-in-out infinite alternate;
+}
+
+/* Text Glow */
+@keyframes glowPulse {
+  from { filter: drop-shadow(0 0 2px #fff) drop-shadow(0 0 5px #ffcc00); }
+  to { filter: drop-shadow(0 0 10px #00e1ff) drop-shadow(0 0 15px #ff007f); }
+}
+
+/* Rotation */
+.rotator {
+  animation: spin 15s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Progress Bar Styles */
+.progress-container {
+  position: absolute;
+  bottom: -40px;
+  width: 250px;
+  height: 8px;
+  background: #ddd;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00e1ff, #ffcc00, #ff007f);
+  border-radius: 20px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  position: absolute;
+  bottom: -25px;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #444;
+  text-shadow: 0 0 2px #fff;
+}
+
+/* Caption */
+.loader-caption {
+  position: absolute;
+  top: calc(100% + 40px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 15px;
+  color: #444;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 0 0 2px #fff;
+}
+
+/* Hide Loader */
+#page-loader.hide {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  let progress = 0;
+  let bar = document.getElementById("progress-bar");
+  let text = document.getElementById("progress-text");
+
+  // Simulate Loading Progress
+  let interval = setInterval(() => {
+    progress += Math.random() * 10;
+    if (progress > 100) progress = 100;
+    bar.style.width = progress + "%";
+    text.textContent = Math.floor(progress) + "%";
+  }, 200);
+
+  // When all content is loaded
+  window.addEventListener("load", function() {
+    clearInterval(interval);
+    bar.style.width = "100%";
+    text.textContent = "100%";
+    setTimeout(() => {
+      document.getElementById("page-loader").classList.add("hide");
+    }, 800);
+  });
+});
+</script>

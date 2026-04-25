@@ -1,0 +1,26 @@
+                        <div class="col-md-3">
+                            <div class="card payment-details flex-fill mb-4">
+                                <div class="card-header">
+                                    <h5>Wallet</h5>
+                                </div>
+                                <div class="card-body">
+                                    
+                                    <form method="post"
+                                          action=""
+                                          hx-post="{% url 'sample_post' %}"
+                                          hx-target="#contact-table-body"
+                                          hx-swap="afterbegin">
+                                                  {% csrf_token %}
+                                                  {{ form.as_p }}
+
+                                    <!--
+                                    <div class="mb-3">
+                                        <label class="form-label">Add Amount</label>
+                                        <input type="text" class="form-control" name="pincode">
+                                    </div>
+                                -->
+                                        <input type="submit" class="form-control" value="Submit">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>

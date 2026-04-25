@@ -1,0 +1,215 @@
+{% load static %}
+<!-- geography.html -->
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h4 class="card-title">FilterizR Gallery with Ekko Lightbox</h4>
+              </div>
+              <div class="card-body">
+                <div>
+                  <div class="btn-group w-100 mb-2">
+                    <a class="btn btn-info active" href="javascript:void(0)" data-filter="all"> All items </a>
+{% for app in apps %}
+                    <a class="btn btn-info" href="javascript:void(0)" data-filter="{{ app.id }}"> {{ app.name }} </a>
+{% endfor %}
+                  </div>
+                  <div class="mb-2">
+                    <a class="btn btn-secondary" href="javascript:void(0)" data-shuffle> Shuffle items </a>
+                    <div class="float-right">
+                      <select class="custom-select" style="width: auto;" data-sortOrder>
+                        <option value="index"> Sort by Position </option>
+                        <option value="sortData"> Sort by Custom Data </option>
+                      </select>
+                      <div class="btn-group">
+                        <a class="btn btn-default" href="javascript:void(0)" data-sortAsc> Ascending </a>
+                        <a class="btn btn-default" href="javascript:void(0)" data-sortDesc> Descending </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="filter-container p-0 row">
+{% for module in modules %}
+                    <div class="filtr-item col-sm-2" data-category="{{ module.app.id }}" data-sort="">
+                      <a href="{% url 'lssemsindex' %}" target="_blank" data-toggle="lightbox" data-title="">
+                        <img src="https://via.placeholder.com/300/FFFFFF?text=1" class="img-fluid mb-2" alt="img"/>{{ module.name }}
+                      </a>
+                    </div>
+{% endfor %}
+                    <div class="filtr-item col-sm-2" data-category="{{ module.app.id }}" data-sort="">
+                      <a href="{% url 'main:lssemsindex' %}" target="_blank" data-toggle="lightbox" data-title="">
+                        <img src="https://via.placeholder.com/300/FFFFFF?text=1" class="img-fluid mb-2" alt="img"/>{{ module.name }}
+                      </a>
+                    </div>
+                    <div class="filtr-item col-sm-2" data-category="{{ module.app.id }}" data-sort="">
+                      <a href="{% url 'main:lssems' %}" target="_blank"  data-title="">
+                        <img src="https://via.placeholder.com/300/FFFFFF?text=1" class="img-fluid mb-2" alt="img"/>
+                        LSSEMS list 
+                      </a>
+                    </div>
+                    <div class="filtr-item col-sm-2" data-category="{{ module.app.id }}" data-sort="">
+                      <a href="{% url 'main:indexx' %}" target="_blank"  data-title="">
+                        <img src="https://via.placeholder.com/300/FFFFFF?text=1" class="img-fluid mb-2" alt="img"/>
+                        Indexx 
+                      </a>
+                    </div>
+
+
+
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h4 class="card-title">Ekko Lightbox</h4>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-2">
+                    <a href="{% url 'main:lssemsindex' %}" target="_blank"  data-title="sample 1 - white" data-gallery="gallery">Site here
+                    </a>
+                  </div>
+                  <div class="col-sm-2">
+                    <a href="https://via.placeholder.com/1200/000000.png?text=2" data-toggle="lightbox" data-title="sample 2 - black" data-gallery="gallery">
+                      <img src="https://via.placeholder.com/300/000000?text=2" class="img-fluid mb-2" alt="black sample"/>
+                    </a>
+                  </div>
+                  <div class="col-sm-2">
+                    <a href="https://via.placeholder.com/1200/FF0000/FFFFFF.png?text=3" data-toggle="lightbox" data-title="sample 3 - red" data-gallery="gallery">
+                      <img src="https://via.placeholder.com/300/FF0000/FFFFFF?text=3" class="img-fluid mb-2" alt="red sample"/>
+                    </a>
+                  </div>
+                  <div class="col-sm-2">
+                    <a href="https://via.placeholder.com/1200/FF0000/FFFFFF.png?text=4" data-toggle="lightbox" data-title="sample 4 - red" data-gallery="gallery">
+                      <img src="https://via.placeholder.com/300/FF0000/FFFFFF?text=4" class="img-fluid mb-2" alt="red sample"/>
+                    </a>
+                  </div>
+                  <div class="col-sm-2">
+                    <a href="https://via.placeholder.com/1200/000000.png?text=5" data-toggle="lightbox" data-title="sample 5 - black" data-gallery="gallery">
+                      <img src="https://via.placeholder.com/300/000000?text=5" class="img-fluid mb-2" alt="black sample"/>
+                    </a>
+                  </div>
+                  <div class="col-sm-2">
+                    <a href="https://via.placeholder.com/1200/FFFFFF.png?text=6" data-toggle="lightbox" data-title="sample 6 - white" data-gallery="gallery">
+                      <img src="https://via.placeholder.com/300/FFFFFF?text=6" class="img-fluid mb-2" alt="white sample"/>
+                    </a>
+                  </div>
+                  <div class="col-sm-2">
+                    <a href="https://via.placeholder.com/1200/FFFFFF.png?text=7" data-toggle="lightbox" data-title="sample 7 - white" data-gallery="gallery">
+                      <img src="https://via.placeholder.com/300/FFFFFF?text=7" class="img-fluid mb-2" alt="white sample"/>
+                    </a>
+                  </div>
+                  <div class="col-sm-2">
+                    <a href="https://via.placeholder.com/1200/000000.png?text=8" data-toggle="lightbox" data-title="sample 8 - black" data-gallery="gallery">
+                      <img src="https://via.placeholder.com/300/000000?text=8" class="img-fluid mb-2" alt="black sample"/>
+                    </a>
+                  </div>
+                  <div class="col-sm-2">
+                    <a href="https://via.placeholder.com/1200/FF0000/FFFFFF.png?text=9" data-toggle="lightbox" data-title="sample 9 - red" data-gallery="gallery">
+                      <img src="https://via.placeholder.com/300/FF0000/FFFFFF?text=9" class="img-fluid mb-2" alt="red sample"/>
+                    </a>
+                  </div>
+                  <div class="col-sm-2">
+                    <a href="https://via.placeholder.com/1200/FFFFFF.png?text=10" data-toggle="lightbox" data-title="sample 10 - white" data-gallery="gallery">
+                      <img src="https://via.placeholder.com/300/FFFFFF?text=10" class="img-fluid mb-2" alt="white sample"/>
+                    </a>
+                  </div>
+                  <div class="col-sm-2">
+                    <a href="https://via.placeholder.com/1200/FFFFFF.png?text=11" data-toggle="lightbox" data-title="sample 11 - white" data-gallery="gallery">
+                      <img src="https://via.placeholder.com/300/FFFFFF?text=11" class="img-fluid mb-2" alt="white sample"/>
+                    </a>
+                  </div>
+                  <div class="col-sm-2">
+                    <a href="https://via.placeholder.com/1200/000000.png?text=12" data-toggle="lightbox" data-title="sample 12 - black" data-gallery="gallery">
+                      <img src="https://via.placeholder.com/300/000000?text=12" class="img-fluid mb-2" alt="black sample"/>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+    <!-- featured section -->
+    <section class="section featured-sec-eleven">
+        <div class="container">
+            <div class="section-header-eleven wow fadeInUp">
+                <span class="section-title"><img src="{% static 'assets/img/icons/compass.svg' %}" alt="compass"
+                        class="me-1">Featured Activities</span>
+                <h2>Handpicked experiences you'll love {{ apps.count }} Apps Found | {{ modules.count }} Modules Found
+</h2>
+            </div>
+            <div>
+                <ul class="nav wow fadeInUp">
+{% for app in apps %}
+                    <li>
+                        <a href="#" class="nav-link {% if forloop.first %}active{% endif %}" data-bs-toggle="tab" data-bs-target="#app-{{ app.id }}">
+                            <img src="{% static 'assets/img/bg/dubai.png' %}" alt="img" class="me-2"> {{ app.id }}{{ app.name }}
+                        </a>
+                    </li>
+{% endfor %}
+                </ul>
+                <div class="tab-content wow fadeInUp">
+{% if modules %}
+                    <div class="tab-pane fade {% if forloop.first %}active{% endif %} show" id="app-{% if module.app.id %}{{ app.id }}{% endif %}">
+                        <div class="row row-gap-4 justify-content-center">                            
+{% for module in modules %}
+                            <div class="col-xl-3 col-lg-4 col-md-6">
+                                <div class="featured-item">
+                                    <div class="featured-img">
+                                        <a href="#">
+                                            <img src="{% static 'assets/img/tours/tours-56.jpg'%} " class="img-fluid" alt="img">
+                                        </a>
+                                        <div class="rating text-dark fs-14 fw-medium">
+                                            <img src="assets/img/icons/star.svg" alt="star" class="me-1">4.96 <span
+                                                class="text-gray-6"> (672 reviews)</span>
+                                        </div>
+                                    </div>
+                                    <div class="featured-content">
+                                        <h3 class="text-truncate mb-1 home-eight-title"><a href="#">{{ module.app.id }}{{ module.name }}</a>
+                                        </h3>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <span class="text-gray-6 d-flex align-items-center"><i
+                                                    class="isax isax-location5 me-2 text-gray-2"></i>Dubai, UAE</span>
+                                            <span class="text-gray-6 d-flex align-items-center"><i
+                                                    class="isax isax-timer-15 me-2 text-gray-2"></i>3 Hours</span>
+                                        </div>
+                                        <div class="border-top pt-3 mt-3">
+                                            <div class="d-flex align-items-center">
+                                                <span class="fs-14 text-gray-5 me-2">Starts From</span>
+                                                <span class="fs-18 fw-semibold text-primary me-1">$130</span>
+                                                <span
+                                                    class="fs-18 fw-semibold text-gray-3 text-decoration-line-through">$380</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+{% endfor %}
+
+                        </div>
+{% endif %}                    
+                    </div>
+                </div>
+                <div class="text-center mt-5 wow fadeInUp">
+                    <a href="#" class="btn btn-primary">View All Activities<i
+                            class="isax isax-arrow-right-3 ms-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- featured section -->
+

@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% include 'head.html' %}
+{% include 'headd.html' %}
+<body>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper authentication-wrapper">
+        <div class="container-fuild">
+
+            <!-- Register -->
+            <div class="w-100 overflow-hidden position-relative flex-wrap d-block vh-100">
+                <div class="row justify-content-center align-items-center vh-100 overflow-auto flex-wrap ">
+                    <div class="col-xxl-4 col-lg-6 col-md-6 col-11 mx-auto">
+                        <div class="card authentication-card">
+                            <div class="card-header">
+                                <div class="text-center">
+
+                                    <div class="p-4">
+                                    <h5 class="mb-1">                                        <img src="{% static 'assets/img/logo02.png' %}" width="45" height="45" alt="logo" class="img-fluid"> Sign Up</h5>
+                                    <p>Create your DreamsTour Account</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+
+                                
+<!--
+                                <form hx-post="/register/" hx-target="this" hx-swap="outerHTML">
+                                -->
+                                <form method="POST" action="{% url 'accounts:register' %}">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <div class="input-icon">
+                                            <span class="input-icon-addon">
+												<i class="isax isax-message"></i>
+											</span>
+                                            {{ form }}
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <button type="submit" class="btn btn-xl btn-primary d-flex align-items-center justify-content-center w-100">Register<i class="isax isax-arrow-right-3 ms-2"></i></button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /Register -->
+
+        </div>
+    </div>
+    <!-- /Main Wrapper -->
+
+    <!-- Cursor -->
+    <div class="xb-cursor tx-js-cursor">
+        <div class="xb-cursor-wrapper">
+            <div class="xb-cursor--follower xb-js-follower"></div>
+        </div>
+    </div>
+    <!-- /Cursor -->
+
+
+
+
+
+    <!-- Cursor -->
+    <div class="xb-cursor tx-js-cursor">
+        <div class="xb-cursor-wrapper">
+            <div class="xb-cursor--follower xb-js-follower"></div>
+        </div>
+    </div>
+    <!-- /Cursor -->
+
+    <div class="back-to-top">
+        <a class="back-to-top-icon align-items-center justify-content-center d-flex"  href="#top"><i class="fa-solid fa-arrow-up"></i></a>
+    </div>
+
+
+    <!-- गड़बड़ वाली लाइन को इससे बदलें -->
+    <script src="{% static 'assets/js/jquery-3.7.1.min.js' %}"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Wow JS -->
+    <script src="{% static 'assets/js/wow.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- MeanMenu Js -->
+    <script src="{% static 'assets/js/jquery.meanmenu.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Swiper Js -->
+    <script src="{% static 'assets/plugins/owlcarousel/owl.carousel.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Fancybox JS -->
+    <script src="{% static 'assets/plugins/fancybox/jquery.fancybox.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Counter JS -->
+    <script src="{% static 'assets/js/jquery.counterup.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+    <script src="{% static 'assets/js/jquery.waypoints.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Datepicker Core JS -->
+    <script src="{% static 'assets/plugins/moment/moment.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+    <script src="{% static 'assets/js/bootstrap-datetimepicker.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- cursor JS -->
+    <script src="{% static 'assets/js/cursor.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Script JS -->
+    <script src="{% static 'assets/js/script.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <script src="{% static 'assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js' %}" data-cf-settings="45caf2e60a81b705632d21fa-|49" defer></script>
+
+<!--<script>
+var animation = lottie.loadAnimation({
+  container: document.getElementById('lottie-container'),
+  renderer: 'svg',
+  loop: true,
+  autoplay: true,
+  path: 'https://assets10.lottiefiles.com/packages/lf20_lk80fpsm.json' // Example animation
+});
+
+window.addEventListener('load', function () {
+  document.getElementById("preloader").style.opacity = 0;
+  setTimeout(() => {
+    document.getElementById("preloader").style.display = "none";
+  }, 800);
+});
+</script>
+-->
+<!-- 1. पहले jQuery -->
+
+
+
+<script>
+function setLang(lang) {
+    document.querySelectorAll('.lang').forEach(el => {
+        el.classList.remove('active');
+    });
+
+    document.querySelectorAll('.' + lang).forEach(el => {
+        el.classList.add('active');
+    });
+}
+</script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        {% if message.tags %}
+    <script>
+Toastify({
+  text: " {{ message }}",
+  duration: 3000,
+  destination: "https://github.com/apvarun/toastify-js",
+  newWindow: true,
+  close: true,
+  gravity: "top", // `top` or `bottom`
+  position: "right", // `left`, `center` or `right`
+  stopOnFocus: true, // Prevents dismissing of toast on hover
+  style: {
+    background: "linear-gradient(to right, #00b09b, #96c93d)",
+  },
+  onClick: function(){} // Callback after click
+}).showToast();
+    </script>
+    {% endif %}
+    {% endfor %}
+</ul>
+{% endif %}
+
+</body>
+</html>

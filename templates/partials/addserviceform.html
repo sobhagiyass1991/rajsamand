@@ -1,0 +1,64 @@
+<div id="addserviceform">
+                                <div id="addservice" hx-on::after-request="document.getElementById('addservice').innerHTML=''">
+                                <form hx-post="{% url 'main:lssems' %}" 
+                                      hx-target="#table-body"
+                                      hx-swap="afterbegin" 
+                                      hx-on::after-request="this.reset()"
+                                      enctype="multipart/form-data">
+
+                                {% csrf_token %}
+
+                    <div class="alert alert-danger alert-dismissible d-flex align-items-center border-0 mb-4 fade show">
+                        <i class="isax isax-info-circle5 me-2"></i> {{ form.errors }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i
+                                class="fas fa-xmark"></i></button>
+                    </div>
+                                   
+                                
+                                    <div class="row">
+                                    {% for field in form %}
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">{{ field.label_tag }} editFirst Name <span
+                                                    class="text-danger">*</span></label>
+                                                                                       {{ field }}
+                                    
+
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    </div>
+                                    <!--
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Last Name <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Email <span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Phone <span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Message <span class="text-danger">*</span></label>
+                                            <textarea class="form-control" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                -->
+
+                                </div>
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                            </form>
+                            </div>
+
+                        </div>                            

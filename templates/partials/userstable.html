@@ -1,0 +1,18 @@
+<table class="table">
+<thead class="thead-dark">
+		<button hx-get="{% url 'accounts:adduser' %}"
+				hx-target="#adduser"
+				hx-swap="outerHTML" 
+				type="button" class="btn btn-block col-md-3 btn-success">Add User </button>
+<tr>
+	<th scope="col"> 		 #	</th>
+	<th scope="col"> 		 First	</th>
+	<th scope="col">		 Last	</th>
+	<th scope="col"> 		 Handle 	</th>
+	<th scope="col"> 		 Handle 	</th>
+</tr>
+</thead>
+<tbody id="user-table-body">
+	{% include 'partials/usersrow.html' %}
+</tbody>
+</table>

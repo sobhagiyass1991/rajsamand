@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toastify JS - Pure JavaScript Toast Notificaton Library</title>
+    <meta name="description" content="Toastify is a pure JavaScript library that lets you create notifications toasts/messages.">
+    <meta name="keywords" content="Javascript,Library,Toastify">
+    <meta name="author" content="apvarun">
+    <link rel="stylesheet" type="text/css" href="{% static 'src/toastify.css' %}">
+</head>
+
+<body id="root">
+</body>
+
+<script type="text/javascript" src="{% static 'src/toastify.js' %}"></script>
+<script type="text/javascript" src="{% static 'example/script.js' %}"></script>
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-105870436-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+</html>

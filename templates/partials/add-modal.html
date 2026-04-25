@@ -1,0 +1,66 @@
+<dialog id="my_modal_1" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">Press ESC key or click the button below to close</p>
+    <div class="modal-action">
+    <form hx-post="{% url 'create_contact' %}" 
+              hx-target="#contacts-list"  
+              hx-swap="innerHTML"
+              hx-encoding="multipart/form-data"
+              hx-on::after-request="if(event.detail.successful) { my_modal_1.close(); this.reset(); }"
+              class="mb-4" novalidate>
+            
+              {% csrf_token %}
+
+                <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">@</span>
+              <label class="label">Password</label>
+                {{ form.name }}
+                </div>
+
+                {% if form.name.errors %}
+                <div role="alert" class="alert alert-error">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{{ form.name.errors}}</span>
+                </div>
+                {% endif %}
+
+                <div class="input-group mb-3">
+              <label class="label">Email</label>
+                {{ form.email }}
+                </div>
+                
+                {% if form.email.errors %}
+                <div role="alert" class="alert alert-error">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{{ form.email.errors}}</span>
+                </div>
+                {% endif %}
+
+
+                <div class="input-group mb-3">
+              <label class="label">Email</label>
+                {{ form.document }}
+                </div>
+
+                {% if form.email.errors %}
+                <div role="alert" class="alert alert-error">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{{ form.document.errors}}</span>
+                </div>
+                {% endif %}
+
+                <button type="submit" class="btn btn-success mt-4">Add Form </button>
+                <!-- if there is a button in form, it will close the modal -->
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>

@@ -1,0 +1,13 @@
+{% load static %}
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- Toastr CSS (पूरी लिंक) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/src/toastify.css' %}">
+<style>
+        /* यह सुनिश्चित करने के लिए कि टोस्ट सबसे ऊपर दिखे */
+        .toastify {
+            z-index: 9999 !important;
+            font-family: 'Arial', sans-serif;
+        }
+    </style>

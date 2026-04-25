@@ -1,0 +1,26 @@
+<!-- partials/edit-modal.html -->
+<div id="edit-modal-content">
+  <h3 class="font-bold text-lg mb-4">Edit Contact</h3>
+<form hx-post="{% url 'edit_contact' getid.id %}" 
+      hx-target="#contacts-list" 
+      hx-on::after-request="if(event.detail.successful) my_modal_1.close()">
+    {% csrf_token %}
+    <div class="space-y-4">
+        {{ editform.as_p }} <!-- सबसे सिंपल तरीका, कोई डिज़ाइन टेंशन नहीं -->
+    </div>
+{{ editform.name }}
+{% if contact_obj %}
+    <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">@</span>
+              <label class="label">Password</label>
+                  <input type="text" name="" value="{{ getid.name }} {{ contact_obj.name }}">                  
+                </div>
+
+{% endif %}
+
+    <div class="modal-action">
+        <button type="submit" class="btn btn-success">Update</button>
+        <button type="button" class="btn" onclick="my_modal_1.close()">Close</button>
+    </div>
+</form>
+</div>

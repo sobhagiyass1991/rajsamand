@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% include 'head.html' %}
+<body>
+
+{% include 'loader.html' %}
+
+<!--
+<div id="preloader">
+  <div id="lottie-container" style="width: 250px; height: 250px;"></div>
+  <div class="preloader-text">Save Girl Child<br>Educate Child<br>Save Environment</div>
+</div>
+-->
+
+
+
+    <!-- Loader -->
+    <!-- /Loader -->    
+
+{% include 'main-header0.html' %}
+
+
+{% include 'modules.html' %}
+
+
+    <!-- Footer -->
+{% include 'footer.html' %}
+    <!-- /Footer -->
+
+{# {% include 'modals.html' %} #}
+
+    <!-- Cursor -->
+    <div class="xb-cursor tx-js-cursor">
+        <div class="xb-cursor-wrapper">
+            <div class="xb-cursor--follower xb-js-follower"></div>
+        </div>
+    </div>
+    <!-- /Cursor -->
+
+    <div class="back-to-top">
+        <a class="back-to-top-icon align-items-center justify-content-center d-flex"  href="#top"><i class="fa-solid fa-arrow-up"></i></a>
+    </div>
+
+
+    <!-- Jquery JS -->
+    <script src="{% static 'assets/js/jquery-3.7.1.min.js' %}" type=""></script>
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Wow JS -->
+    <script src="{% static 'assets/js/wow.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- MeanMenu Js -->
+    <script src="{% static 'assets/js/jquery.meanmenu.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Swiper Js -->
+    <script src="{% static 'assets/plugins/owlcarousel/owl.carousel.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Fancybox JS -->
+    <script src="{% static 'assets/plugins/fancybox/jquery.fancybox.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Counter JS -->
+    <script src="{% static 'assets/js/jquery.counterup.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+    <script src="{% static 'assets/js/jquery.waypoints.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Datepicker Core JS -->
+    <script src="{% static 'assets/plugins/moment/moment.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+    <script src="{% static 'assets/js/bootstrap-datetimepicker.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- cursor JS -->
+    <script src="{% static 'assets/js/cursor.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Script JS -->
+    <script src="{% static 'assets/js/script.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <script src="{% static 'assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js' %}" data-cf-settings="45caf2e60a81b705632d21fa-|49" defer></script>
+
+<!--<script>
+var animation = lottie.loadAnimation({
+  container: document.getElementById('lottie-container'),
+  renderer: 'svg',
+  loop: true,
+  autoplay: true,
+  path: 'https://assets10.lottiefiles.com/packages/lf20_lk80fpsm.json' // Example animation
+});
+
+window.addEventListener('load', function () {
+  document.getElementById("preloader").style.opacity = 0;
+  setTimeout(() => {
+    document.getElementById("preloader").style.display = "none";
+  }, 800);
+});
+</script>
+-->
+
+<script>
+function setLang(lang) {
+    document.querySelectorAll('.lang').forEach(el => {
+        el.classList.remove('active');
+    });
+
+    document.querySelectorAll('.' + lang).forEach(el => {
+        el.classList.add('active');
+    });
+}
+</script>
+
+
+
+<!-- DataTables CSS -->
+<link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+    $('#myTable').DataTable();
+});
+</script>>
+
+<script>
+document.addEventListener("DOMContentLoaded", (event) => {
+
+const tl = gsap
+  .timeline({
+    repeat: -1,
+    defaults:{ duration: 3, ease: 'power1.inOut' }
+  })
+  .set('#svg-stage', { opacity: 1 })
+  .from('path', { drawSVG:'0% 0%' })
+  .to('path', { drawSVG:'100% 100%' })
+
+  // आपका सारा कोड इसके अंदर आएगा
+  document.querySelectorAll(".box").forEach((box, index) => {
+    box.addEventListener("click", () => {
+      gsap.to(".box", {
+        duration: 0.5,
+        opacity: 0,
+        y: -100,
+        stagger: {
+          from: index,
+          amount: 1
+        },
+        ease: "back.in",
+        overwrite: "auto"
+      });
+    });
+  });
+});
+</script>
+{% include 'ekko.html' %}
+</body>
+</html>

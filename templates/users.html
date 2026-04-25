@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+<h1>Welcome to Home Page</h1>
+
+{% block content %}
+
+<main class="containerr">
+
+<div class="container pt-5 pb-5" data-aos="fade-up">
+	<div class="row justify-content-center">
+		<div class="col-md-12">
+			<article>
+			<h1><strong>Bold title</strong> for your paragraph</h1>
+<!--------------------------------------
+TABLE
+--------------------------------------->
+<section class="pt-4 pb-5" data-aos="fade-up">
+<h3 class="h5 mb-4 font-weight-bold">Table 
+
+</h3>
+
+<div id="adduser"> </div>
+<div id="userslist">
+	{% include 'partials/userstable.html' %}
+</div>
+
+<div id="userdetails"> </div>
+
+</section>
+
+		</div>
+	</div>
+</div>
+<!-- End Main -->
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% load static %}
+    <!-- Jquery JS -->
+
+    <!-- jQuery (सबसे पहले) -->
+<!-- Toastr JS (दूसरे नंबर पर) -->
+<!-- HTMX (अंत में) 
+ <script src="https://cdnjs.cloudflare.com"></script>
+<script src="https://unpkg.com" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+-->
+
+<script type="text/javascript" src="{% static 'assets/src/toastify.js' %}"></script>
+
+<script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    });
+</script>
+
+<script>
+  document.body.addEventListener('rsuccess', function (evt) {
+      console.log("Success event triggered!");    
+      // सुधार: i और bgColors को डिफाइन किया गया है ताकि एरर न आए
+      Toastify({
+        text: "सफलता! राजसमंद फॉर्म जमा हो गया", // हिंदी संदेश
+        duration: 3000,
+        close: true,
+        gravity: "top", // top or bottom
+        position: "right", // left, center or right
+        style: {
+          background: "linear-gradient(to right, #FF8C00, #FFD700)", // राजस्थानी ग्रेडिएंट
+        }
+      }).showToast();
+    
+  });
+</script>
+<script>
+  document.body.addEventListener('fail', function (evt) {
+      console.log("Success event triggered!");    
+      // सुधार: i और bgColors को डिफाइन किया गया है ताकि एरर न आए
+      Toastify({
+        text: "firstसफलता! राजसमंद फॉर्म जमा हो गया", // हिंदी संदेश
+        duration: 3000,
+        close: true,
+        gravity: "top", // top or bottom
+        position: "right", // left, center or right
+        style: {
+          background: "yellow", // राजस्थानी ग्रेडिएंट
+        }
+      }).showToast();
+    
+  });
+</script>
+<!--
+<div hx-trigger="success from:body" 
+     hx-on::trigger="Toastify({text: 'सफलता!', duration: 3000}).showToast()">
+</div>
+-->

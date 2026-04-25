@@ -1,0 +1,76 @@
+<!-- row 1 -->
+<tr>
+        <th>
+          <label>
+            <input type="checkbox" class="checkbox" />
+          </label>
+              <div class="font-bold"> {{ x.id }} </div>
+        </th>
+        <td>
+          <div class="flex items-center gap-3">
+            <div class="avatar">
+              <div class="mask mask-squircle h-10 w-10">
+                <img
+                  src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                  alt="Avatar Tailwind CSS Component" / width="25" height="25">
+              </div>
+            </div>
+            <div>
+              <div class="font-bold"> {{ x.id }} ) {{ x.name }} </div>
+              <div class="text-sm opacity-50">{{ x.phone }}</div>
+            </div>
+          </div>
+        </td>
+        <td>
+
+          {% if x.email == "asnsm100@gmail.com" %}
+            <p> email is this </p>
+          {% endif %}     
+
+          {{ x.email }}
+          <br />
+          <span class="badge badge-ghost badge-sm"></span>
+        </td>
+        {% if x.phone %} 
+            <td>  {{ x.phone }}</td>
+        {% else %} 
+            <td>
+                <div class="badge badge-error">
+                <svg class="size-[1em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="currentColor"><rect x="1.972" y="11" width="20.056" height="2" transform="translate(-4.971 12) rotate(-45)" fill="currentColor" stroke-width="0"></rect><path d="m12,23c-6.065,0-11-4.935-11-11S5.935,1,12,1s11,4.935,11,11-4.935,11-11,11Zm0-20C7.038,3,3,7.037,3,12s4.038,9,9,9,9-4.037,9-9S16.962,3,12,3Z" stroke-width="0" fill="currentColor"></path></g></svg>
+                    No Phone available
+            </div>
+            </td>
+        {% endif %}
+
+         {% if x.document %} 
+            <td>  <a href="{{ x.document.url }}"> FILE  </td>
+        {% else %} 
+            <td>
+                <div class="badge badge-error">
+                <svg class="size-[1em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="currentColor"><rect x="1.972" y="11" width="20.056" height="2" transform="translate(-4.971 12) rotate(-45)" fill="currentColor" stroke-width="0"></rect><path d="m12,23c-6.065,0-11-4.935-11-11S5.935,1,12,1s11,4.935,11,11-4.935,11-11,11Zm0-20C7.038,3,3,7.037,3,12s4.038,9,9,9,9-4.037,9-9S16.962,3,12,3Z" stroke-width="0" fill="currentColor"></path></g></svg>
+                    No File available
+            </div>
+            </td>
+        {% endif %}
+
+        
+        <td>
+
+            <button hx-get="{% url 'edit_contact' x.id %}" 
+                    hx-target="#editform" 
+                    hx-swap="outerHTML"
+                    class="btn btn-primary btn-sm">
+                Edit
+            </button>
+
+            <button hx-delete="{% url 'delete_contact' x.id %}" 
+                    hx-target="#contacts-list"
+                    hx-confirm="Are your sure ? "
+                    hx-swap="innerHTML"
+                    class="btn btn-primary btn-sm">
+                Edit
+            </button>
+
+          </td>
+
+</tr>

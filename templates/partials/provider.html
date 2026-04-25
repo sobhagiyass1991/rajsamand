@@ -1,0 +1,53 @@
+{% for x in providers %}
+                        <!-- Hotel Grid -->
+                        <div class="col-xl-4 col-md-6 mb-4 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <div class="img-slider image-slide owl-carousel nav-center">
+                                        <div class="slide-images">
+                                            <a href="hotel-details.html">
+                                                <img src="assets/img/hotels/hotel-01.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="hotel-details.html">
+                                                <img src="assets/img/hotels/hotel-02.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="hotel-details.html">
+                                                <img src="assets/img/hotels/hotel-03.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="fav-item">
+                                        <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-ranking me-1"></i>Trending</span>
+                                        <a href="javascript:void(0);" class="fav-icon selected">
+                                            <i class="isax isax-heart5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">5.0</span>
+                                        <p class="fs-14">(400 Reviews)</p>
+                                    </div>
+                                    <h5 class="mb-1 text-truncate"><a href="hotel-details.html">{{ x.name_hi }} {{ x.name }}</a></h5>
+                                    <p class="d-flex align-items-center mb-2"><i class="isax isax-location5 me-2"></i> {{ x.address_hi }}  {{ x.address_en }} </p>
+                                    <div class="border-top pt-2 mb-2">
+                                        <h6 class="d-flex align-items-center">Facillities : {{ x.name_en }} <i class="isax isax-home-wifi ms-2 me-2 text-primary"></i><i class="isax isax-scissor me-2 text-primary"></i><i class="isax isax-profile-2user me-2 text-primary"></i><i class="isax isax-wind-2 me-2 text-primary"></i><a href="javascript:void(0);" class="fs-14 fw-normal text-default d-inline-block">+2</a></h6>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h5 class="text-primary text-nowrap me-2"> {{ x.tehsil.name_hi }} {{ x.room_price }} <span class="fs-14 fw-normal text-default">/ Night</span></h5>
+                                        <a href="javascript:void(0);" class="d-flex align-items-center overflow-hidden">
+                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+												<img src="assets/img/users/user-08.jpg" class="rounded-circle" alt="img">
+											</span>
+                                            <p class="fs-14">{{ x.tehsil.name_en }}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Hotel Grid -->
+{% endfor %}

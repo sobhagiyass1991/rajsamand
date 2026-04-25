@@ -1,0 +1,22 @@
+
+        <div class="card-body" id="editform">
+                            <div class="mb-3">
+                                <h2 class="mb-1">Get in Touch</h2>
+                                <p class="text-gray-6 mb-1">How we can help you? Please write down your query</p>
+                            </div>
+
+
+         <form hx-post="{% url 'edit_contact' instance.id %}" 
+              hx-target="#contacts-list"  
+              hx-on::after-request="if(event.detail.successful) document.getElementById('editform').innerHTML = ''"
+              hx-encoding="multipart/form-data"
+              class="mb-4" novalidate>
+            
+              {% csrf_token %}
+
+                {{ editform.as_p }}
+                <button type="submit" class="btn btn-success mt-4"> Save Details </button>
+                <button class="btn">Close</button>
+          </form>
+                        </div>
+                      

@@ -1,0 +1,104 @@
+{% load static %}
+{% include 'header.html' %}
+
+<!-- Page Wrapper -->
+    <div class="content content-two">
+        <div class="container">
+
+            <div class="row">
+
+                <!-- Sidebar -->
+                <!-- Sidebar -->
+                {% include 'user_sidebar.html' %} 
+                <!-- /Sidebar -->
+                <!-- /Sidebar -->
+
+
+                <!-- My Profile -->
+                <div class="col-xl-9 col-lg-8">
+                    <div class="card shadow-none mb-0">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h6>My Profile</h6>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <button hx-get="{% url 'accounts:userprofile' %}" 
+                                                      hx-target="#editprofile" 
+                                                      hx-swap="outerHTML" 
+                                                      hx-trigger="click" 
+                                                      class="btn btn-light d-flex align-items-center justify-content-center" 
+                                                      value="Edit" ><i class="isax isax-edit-2 fs-14"></i>Edit
+                                </button>
+                             </div>
+                            
+                        </div>
+
+
+                        <div id="editprofile" hx-swap-oob="outerHTML"></div>
+                        <div id="myprofile">
+                            {% include 'partials/myprofile.html' %}
+                        </div>
+                    </div>
+                </div>
+                <!-- /My Profile -->
+
+            </div>
+
+
+
+{% include 'foot.html' %}
+<script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    });
+</script>
+{% include 'footer.html' %}
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<script>
+    document.body.addEventListener('success', function(evt) {
+    Toastify({
+        text: "प्रोफाइल अपडेट हो गई भाई! ✅",
+        duration: 3000,
+        gravity: "top", 
+        position: "right",
+        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+    }).showToast();
+});
+</script>
+<script>
+    document.body.addEventListener('failed', function(evt) {
+    Toastify({
+        text: "पojjj  ✅",
+        duration: 3000,
+        gravity: "top", 
+        position: "right",
+        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+    }).showToast();
+});
+</script>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        {% if message.tags %}
+    <script>
+Toastify({
+  text: " {{ message }}",
+  duration: 3000,
+  destination: "https://github.com/apvarun/toastify-js",
+  newWindow: true,
+  close: true,
+  gravity: "top", // `top` or `bottom`
+  position: "right", // `left`, `center` or `right`
+  stopOnFocus: true, // Prevents dismissing of toast on hover
+  style: {
+    background: "linear-gradient(to right, #00b09b, #96c93d)",
+  },
+  onClick: function(){} // Callback after click
+}).showToast();
+    </script>
+    {% endif %}
+    {% endfor %}
+</ul>
+{% endif %}
+

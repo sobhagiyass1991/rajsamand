@@ -1,0 +1,38 @@
+  <style>
+    /* Optional styling for the video container */
+/* General body reset */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Updated video container styling */
+.video-container {
+    position: relative;
+    width: 100%; /* Make it responsive */
+    height: auto; /* Adjust height dynamically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0; /* Remove any extra space */
+    background-color: #000; /* Optional background color */
+}
+
+.video-container video {
+    width: 100%; /* Video scales to container width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensures it fits nicely */
+    max-height: 100vh; /* Prevents the video from exceeding viewport height */
+    border-radius: 10px; /* Optional: Adds rounded corners */
+}
+  
+
+  </style>
+
+  <div class="video-container">
+    <video autoplay muted controls>
+        <source src="assets/videos/video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+

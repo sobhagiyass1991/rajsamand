@@ -1,0 +1,11 @@
+<tr>
+	<th scope="row"> 		 1  	</th>
+	<td> {{ user.first_name }} {{ user.middle_name }} {{ user.last_name }}	</td>
+	<td> {{ user.username }} {{ user.email }}</td>
+	<td> {% if user.is_active == 1  %}  		<span class="badge badge-pill badge-success">Success</span> {% endif %}	</td>
+	<td> 		<button hx-get="{% url 'accounts:usersdetails' user.id %}" 
+						hx-target="#userdetails"
+						hx-swap="outerHTML" 
+						type="button" class="btn btn-sm btn-info btn-round">Details</button>
+	</td>
+</tr>

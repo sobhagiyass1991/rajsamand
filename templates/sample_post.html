@@ -1,0 +1,154 @@
+{% load static %}
+{% include 'header.html' %}
+
+
+                      <!--begin::Section-->
+          <section class="section blog-section blog-sec-six lang hi active">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="section-header-six">
+                        <h2> सहायता <span class="text-primary">.</span></h2>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-end">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+
+                <!-- Wallet -->
+                    <div class="row">
+
+                        <!-- Wallet List -->
+                        <!-- /Wallet List -->
+                    {% include 'sidebar.html' %}
+
+                        <!-- Wallet -->
+                        <!-- /Wallet -->
+                    <!-- Transactions -->
+                    <div class="col-md-9">
+                    <!-- /Transactions -->
+
+
+                    <!-- Transactions List -->
+                        <div class="card-body p-0">
+                            <div class="list-header d-flex align-items-center justify-content-between flex-wrap">
+                                <h6>Transactions List</h6>
+                                <div class="d-flex align-items-center flex-wrap">
+                                    <div class="input-icon-start  me-2 position-relative">
+                                        <span class="icon-addon">
+										<i class="isax isax-search-normal-1 fs-14"></i>
+									</span>
+                                        <input type="text" class="form-control" placeholder="Search">
+                                    </div>
+                                    <div class="dropdown me-3">
+                                        <a href="javascript:void(0);" class="dropdown-toggle text-gray-6 btn  rounded border d-inline-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+										Status
+									</a>
+                                        <ul class="dropdown-menu dropdown-menu-end p-3">
+                                            <li>
+                                                <a href="javascript:void(0);" class="dropdown-item rounded-1">Completed</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);" class="dropdown-item rounded-1">Pending</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);" class="dropdown-item rounded-1">Cancelled</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive" id="pincode-list">
+                                {% if pincodelist %}        
+                                    {% include 'partials/table.html' %}
+                                {% else %}
+                                    <div role="alert" class="alert alert-error">...</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    <!-- /Transactions List -->
+
+
+                    </div>
+                    </div>
+
+
+                </div>
+                <!-- /Wallet -->
+
+            </div>
+        </div>
+    </section>
+
+                  <!--end::Row-->
+
+
+
+                  <!--end::Row-->
+
+
+                  <!--end::Row
+{% include 'toast.html' %}
+                -->
+
+{% include 'footerr.html' %}
+<script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    });
+</script>
+
+
+
+<!-- jQuery (सबसे पहले) -->
+<script src="https://code.jquery.com"></script>
+<!-- Toastr JS (दूसरे नंबर पर) 
+ <script src="https://cdnjs.cloudflare.com"></script>
+<script type="text/javascript" src="{% static 'assets/src/toastify.js' %}"></script>
+-->
+
+
+<script>
+  document.body.addEventListener('success', function (evt) {
+      console.log("Success event triggered!");    
+      // सुधार: i और bgColors को डिफाइन किया गया है ताकि एरर न आए
+      Toastify({
+        text: "Successfully submitted", // हिंदी संदेश
+        duration: 3000,
+        close: true,
+        gravity: "top", // top or bottom
+        position: "right", // left, center or right
+        style: {
+          background: "linear-gradient(to right, #FF8C00, #FFD700)", // राजस्थानी ग्रेडिएंट
+        }
+      }).showToast();
+    
+  });
+</script>
+<script>
+  document.body.addEventListener('failed', function (evt) {
+      console.log("Success event triggered!");    
+      // सुधार: i और bgColors को डिफाइन किया गया है ताकि एरर न आए
+      Toastify({
+        text: " ohh You have an Error.", // हिंदी संदेश
+        duration: 3000,
+        close: true,
+        gravity: "top", // top or bottom
+        position: "right", // left, center or right
+        style: {
+          background: "linear-gradient(to right, #FF8C00, #FFD700)", // राजस्थानी ग्रेडिएंट
+        }
+      }).showToast();
+    
+  });
+</script>
+<!--
+<div hx-trigger="success from:body" 
+     hx-on::trigger="Toastify({text: 'सफलता!', duration: 3000}).showToast()">
+</div>
+-->

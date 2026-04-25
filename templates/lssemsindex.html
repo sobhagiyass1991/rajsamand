@@ -1,0 +1,944 @@
+{% load static %}
+{% include 'header.html' %}
+    <!-- Page Wrapper -->
+    <div class="content">
+        <div class="container">
+
+            <!-- Hotel Search -->
+            <!-- /Hotel Search -->
+
+            <!-- Hotel Types -->
+            <!-- /Hotel Types -->
+
+            <div class="row">
+
+                <!-- Sidebar -->
+                <div class="col-xl-3 col-lg-4 theiaStickySidebar">
+                    <div class="card filter-sidebar mb-4 mb-lg-0">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h5>Filters</h5>
+                            <a href="javascript:void(0);" class="fs-14 link-primary">Reset</a>
+                        </div>
+                        <div class="card-body p-0">
+                                <div class="p-3 border-bottom">
+                                    <label class="form-label fs-16">Search by Hotel Name</label>
+                                    <div class="input-icon">
+                                        <span class="input-icon-addon">
+											<i class="isax isax-search-normal"></i>
+										</span>
+                                        <input 
+                                                type="text" 
+                                                class="form-control" 
+                                                placeholder="Search by Hotel Name"
+                                                name="search_venues"
+                                                hx-get="{% url 'venues' %}"
+                                                hx-trigger="keyup changed delay:500ms"
+                                                hx-target="#venues-list"
+                                                hx-indicator="#spinner">
+                                                {% include 'partials/spinner.html' %}
+                                                
+                                    </div>
+                                </div>
+                                <div class="accordion accordion-list">
+                                    <div class="accordion-item border-bottom p-3">
+                                        <div class="accordion-header">
+                                            <div class="accordion-button p-0" data-bs-toggle="collapse" data-bs-target="#accordion-brand" aria-expanded="true" aria-controls="accordion-brand" role="button">
+                                                <i class="isax isax-cd me-2 text-primary"></i> Tehsil 
+                                            </div>
+                                        </div>
+                                        <div id="accordion-brand" class="accordion-collapse collapse show">
+                                            <div class="accordion-body">
+                                                <div class="more-content">
+
+
+                                                    {% if tehsil %}
+                                                    {% for tehsil in tehsil %}
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" 
+                                                               name="tehsil" 
+                                                               type="checkbox" 
+                                                               id=""
+                                                               value="{{ tehsil.name_en }}"
+                                                               hx-get="{% url 'venues' %}"
+                                                               hx-include="[name='rp'][name='tehsil']"
+                                                               hx-trigger="change"
+                                                               hx-swap="innerHTML"
+                                                               hx-target="#venues-list"
+                                                               hx-indicator="#spinner">
+                                                               {% include 'partials/spinner.html' %}
+                                                               
+                                                        <label class="form-check-label ms-2" for="brand1">
+                                                            {{ tehsil.name_en }}
+                                                        </label>
+                                                    </div>
+                                                    {% endfor %}
+                                                    {% endif %}
+                                                </div>
+                                                <a href="javascript:void(0);" class="more-view fw-medium fs-14">Show More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item border-bottom p-3">
+                                        <div class="accordion-header">
+                                            <div class="accordion-button p-0" data-bs-toggle="collapse" data-bs-target="#accordion-style" aria-expanded="true" aria-controls="accordion-style" role="button">
+                                                <i class="isax isax-building me-2 text-primary"></i> Room Price 
+                                            </div>
+                                        </div>
+                                        <div id="accordion-style" class="accordion-collapse collapse show">
+                                            <div class="accordion-body">
+                                                <div class="more-content">
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="rp" type="checkbox" id="style1" value="1500" hx-get="{% url 'venues' %}"  hx-target="#venues-list" hx-trigger="change" hx-include="[name='tehsil']">
+                                                        <label class="form-check-label ms-2" for="style1">
+                                                            0 to 1500 
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="rp" type="checkbox" id="style2" value="1001_2000" hx-get="{% url 'venues' %}"  hx-target="#venues-list" hx-trigger="change" hx-include="[name='tehsil']">
+                                                        <label class="form-check-label ms-2" for="style2">
+                                                            1000 to  2000
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="rp" type="checkbox" id="style3" value="2000" hx-get="{% url 'venues' %}"  hx-target="#venues-list" hx-trigger="change">
+                                                        <label class="form-check-label ms-2" for="style3">
+                                                            Above 2000
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <a href="javascript:void(0);" class="more-view fw-medium fs-14">Show More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item border-bottom p-3">
+                                        <div class="accordion-header">
+                                            <div class="accordion-button p-0" data-bs-toggle="collapse" data-bs-target="#accordions-popular" aria-expanded="true" aria-controls="accordions-popular" role="button">
+                                                <i class="isax isax-coin me-2 text-primary"></i>Price Per Night
+                                            </div>
+                                        </div>
+                                        <div id="accordions-popular" class="accordion-collapse collapse show">
+                                            <div class="accordion-body">
+                                                <div class="filter-range">
+                                                    <input type="text" id="range_03">
+                                                </div>
+                                                <div class="filter-range-amount">
+                                                    <p class="fs-14">Range : <span class="text-gray-9 fw-medium">$200 - $5695</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item border-bottom p-3">
+                                        <div class="accordion-header">
+                                            <div class="accordion-button p-0" data-bs-toggle="collapse" data-bs-target="#accordion-hotel" aria-expanded="true" aria-controls="accordion-hotel" role="button">
+                                                <i class="isax isax-buildings me-2 text-primary"></i>Hotel Types
+                                            </div>
+                                        </div>
+                                        <div id="accordion-hotel" class="accordion-collapse collapse show">
+                                            <div class="accordion-body">
+                                                <div class="more-content">
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="hotel1" type="checkbox" id="hotel1">
+                                                        <label class="form-check-label ms-2" for="hotel1">
+                                                            Hotels
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="hotel2" type="checkbox" id="hotel2">
+                                                        <label class="form-check-label ms-2" for="hotel2">
+                                                            Aparthotel
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="hotel3" type="checkbox" id="hotel3">
+                                                        <label class="form-check-label ms-2" for="hotel3">
+                                                            Villa
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="hotel4" type="checkbox" id="hotel4" checked>
+                                                        <label class="form-check-label ms-2" for="hotel4">
+                                                            Apartment
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="hotel5" type="checkbox" id="hotel5">
+                                                        <label class="form-check-label ms-2" for="hotel5">
+                                                            Private Vacation Home
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="hotel6" type="checkbox" id="hotel6">
+                                                        <label class="form-check-label ms-2" for="hotel6">
+                                                            Guest House
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="hotel7" type="checkbox" id="hotel7">
+                                                        <label class="form-check-label ms-2" for="hotel7">
+                                                            Lodge
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="hotel8" type="checkbox" id="hotel8">
+                                                        <label class="form-check-label ms-2" for="hotel8">
+                                                            Resort
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <a href="javascript:void(0);" class="more-view fw-medium fs-14">Show More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item border-bottom p-3">
+                                        <div class="accordion-header">
+                                            <div class="accordion-button p-0" data-bs-toggle="collapse" data-bs-target="#accordion-amenity" aria-expanded="true" aria-controls="accordion-amenity" role="button">
+                                                <i class="isax isax-candle me-2 text-primary"></i>Amenities
+                                            </div>
+                                        </div>
+                                        <div id="accordion-amenity" class="accordion-collapse collapse show">
+                                            <div class="accordion-body">
+                                                <div class="more-content">
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="amenity1" type="checkbox" id="amenity1">
+                                                        <label class="form-check-label ms-2" for="amenity1">
+                                                            Free Wifi
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="amenity2" type="checkbox" id="amenity2">
+                                                        <label class="form-check-label ms-2" for="amenity2">
+                                                            Breakfast Included
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="amenity3" type="checkbox" id="amenity3">
+                                                        <label class="form-check-label ms-2" for="amenity3">
+                                                            Pool
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="amenity4" type="checkbox" id="amenity4" checked>
+                                                        <label class="form-check-label ms-2" for="amenity4">
+                                                            Free Parking
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="amenity5" type="checkbox" id="amenity5">
+                                                        <label class="form-check-label ms-2" for="amenity5">
+                                                            Spa
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="amenity6" type="checkbox" id="amenity6">
+                                                        <label class="form-check-label ms-2" for="amenity6">
+                                                            Gym
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="amenity7" type="checkbox" id="amenity7">
+                                                        <label class="form-check-label ms-2" for="amenity7">
+                                                            Ocean view
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <a href="javascript:void(0);" class="more-view fw-medium fs-14">Show More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item border-bottom p-3">
+                                        <div class="accordion-header">
+                                            <div class="accordion-button p-0" data-bs-toggle="collapse" data-bs-target="#accordion-popular" aria-expanded="true" aria-controls="accordion-popular" role="button">
+                                                <i class="isax isax-maximize me-2 text-primary"></i>Distance
+                                            </div>
+                                        </div>
+                                        <div id="accordion-popular" class="accordion-collapse collapse show">
+                                            <div class="accordion-body">
+                                                <div class="filter-range-amount">
+                                                    <p class="fs-14">25km</p>
+                                                </div>
+                                                <div class="filter-range">
+                                                    <input type="text" id="range_01">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item border-bottom p-3">
+                                        <div class="accordion-header">
+                                            <div class="accordion-button p-0" data-bs-toggle="collapse" data-bs-target="#accordion-cusine" aria-expanded="true" aria-controls="accordion-cusine" role="button">
+                                                <i class="isax isax-receipt-item me-2 text-primary"></i>Cusine
+                                            </div>
+                                        </div>
+                                        <div id="accordion-cusine" class="accordion-collapse collapse show">
+                                            <div class="accordion-body">
+                                                <div class="more-content">
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="cusine1" type="checkbox" id="cusine1">
+                                                        <label class="form-check-label ms-2" for="cusine1">
+                                                            American
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="cusine2" type="checkbox" id="cusine2">
+                                                        <label class="form-check-label ms-2" for="cusine2">
+                                                            Chinese
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="cusine3" type="checkbox" id="cusine3">
+                                                        <label class="form-check-label ms-2" for="cusine3">
+                                                            Italian
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="cusine4" type="checkbox" id="cusine4" checked>
+                                                        <label class="form-check-label ms-2" for="cusine4">
+                                                            Mexican
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="cusine5" type="checkbox" id="cusine5">
+                                                        <label class="form-check-label ms-2" for="cusine5">
+                                                            Indian
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="cusine6" type="checkbox" id="cusine6">
+                                                        <label class="form-check-label ms-2" for="cusine6">
+                                                            Australian
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <a href="javascript:void(0);" class="more-view fw-medium fs-14">Show More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item border-bottom p-3">
+                                        <div class="accordion-header">
+                                            <div class="accordion-button p-0" data-bs-toggle="collapse" data-bs-target="#accordion-meal" aria-expanded="true" aria-controls="accordion-meal" role="button">
+                                                <i class="isax isax-reserve me-2 text-primary"></i>Meal plans available
+                                            </div>
+                                        </div>
+                                        <div id="accordion-meal" class="accordion-collapse collapse show">
+                                            <div class="accordion-body pt-2">
+                                                <div class="form-checkbox form-check form-check-inline d-inline-flex align-items-center mt-2 me-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="meals1" type="checkbox" id="meals1">
+                                                    <label class="form-check-label ms-2" for="meals1">
+                                                        All inclusive
+                                                    </label>
+                                                </div>
+                                                <div class="form-checkbox form-check form-check-inline d-inline-flex align-items-center mt-2 me-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="meals2" type="checkbox" id="meals2">
+                                                    <label class="form-check-label ms-2" for="meals2">
+                                                        Breakfast
+                                                    </label>
+                                                </div>
+                                                <div class="form-checkbox form-check form-check-inline d-inline-flex align-items-center mt-2 me-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="meals3" type="checkbox" id="meals3">
+                                                    <label class="form-check-label ms-2" for="meals3">
+                                                        Lunch
+                                                    </label>
+                                                </div>
+                                                <div class="form-checkbox form-check form-check-inline d-inline-flex align-items-center mt-2 me-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="meals4" type="checkbox" id="meals4" checked>
+                                                    <label class="form-check-label ms-2" for="meals4">
+                                                        Dinner
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item border-bottom p-3">
+                                        <div class="accordion-header">
+                                            <div class="accordion-button p-0" data-bs-toggle="collapse" data-bs-target="#accordion-brands" aria-expanded="true" aria-controls="accordion-brands" role="button">
+                                                <i class="isax isax-discount-shape me-2 text-primary"></i>Reviews
+                                            </div>
+                                        </div>
+                                        <div id="accordion-brands" class="accordion-collapse collapse show">
+                                            <div class="accordion-body">
+                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="review1" type="checkbox" id="review1">
+                                                    <label class="form-check-label ms-2" for="review1">
+                                                        <span class="rating d-flex align-items-center">
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary"></i>
+                                                            <span class="ms-2">5 Star</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="review2" type="checkbox" id="review2">
+                                                    <label class="form-check-label ms-2" for="review2">
+                                                        <span class="rating d-flex align-items-center">
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary"></i>
+                                                            <span class="ms-2">4 Star</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="review3" type="checkbox" id="review3">
+                                                    <label class="form-check-label ms-2" for="review3">
+                                                        <span class="rating d-flex align-items-center">
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary"></i>
+                                                            <span class="ms-2">3 Star</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="review4" type="checkbox" id="review4">
+                                                    <label class="form-check-label ms-2" for="review4">
+                                                        <span class="rating d-flex align-items-center">
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary"></i>
+                                                            <span class="ms-2">2 Star</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check d-flex align-items-center ps-0 mb-0">
+                                                    <input class="form-check-input ms-0 mt-0" name="review5" type="checkbox" id="review5">
+                                                    <label class="form-check-label ms-2" for="review5">
+                                                        <span class="rating d-flex align-items-center">
+                                                            <i class="fas fa-star filled text-primary"></i>
+                                                            <span class="ms-2">1 Star</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Sidebar -->
+
+                <div class="col-xl-9 col-lg-8 theiaStickySidebar">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                        <h6 class="mb-3"> {{ total }} Hotels Available. </h6>
+                        <div class="d-flex align-items-center flex-wrap">
+                            <div class="list-item d-flex align-items-center mb-3">
+                                <a href="hotel-grid.html" class="list-icon active me-2"><i class="isax isax-grid-1"></i></a>
+                                <a href="hotel-list.html" class="list-icon me-2"><i class="isax isax-firstline"></i></a>
+                                <a href="hotel-map.html" class="list-icon me-2"><i class="isax isax-map-1"></i></a>
+                            </div>
+                            <div class="dropdown mb-3">
+                                <a href="javascript:void(0);" class="dropdown-toggle py-2" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="fw-medium text-gray-9">Sort By : </span>Recommended
+                                </a>
+                                <div class="dropdown-menu dropdown-sm">
+                                        <h6 class="fw-medium fs-16 mb-3">Sort By</h6>
+                                        <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                            <input class="form-check-input ms-0 mt-0" 
+                                               name="sort_by"
+                                               value="low" 
+                                               type="checkbox" 
+                                               hx-get="{% url 'venues' %}"
+                                               hx-inlcude="[name='rp'], [name='tehsil']"
+                                               hx-trigger="change"
+                                               hx-swap="innerHTML"
+                                               hx-target="#venues-list"
+                                               hx-indicator="#spinner">
+                                               {% include 'partials/spinner.html' %}
+                                            <label class="form-check-label ms-2" for="recommend2">Price: low to high</label>
+                                        </div>
+                                        <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                            <input class="form-check-input ms-0 mt-0" 
+                                                    name="sort_by"
+                                                    value="high" 
+                                                    type="checkbox" 
+                                                    hx-get="{% url 'venues' %}"
+                                                    hx-trigger="change"
+                                                    hx-swap="innerHTML"
+                                                    hx-target="#venues-list"
+                                                    hx-indicator="#spinner">
+                                                    {% include 'partials/spinner.html' %}
+                                            <label class="form-check-label ms-2" for="recommend3">Price: high to low</label>
+                                        </div>
+                                        <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                            <input class="form-check-input ms-0 mt-0" name="recommend" type="checkbox" id="recommend4">
+                                            <label class="form-check-label ms-2" for="recommend4">Newest</label>
+                                        </div>
+                                        <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                            <input class="form-check-input ms-0 mt-0" name="recommend" type="checkbox" id="recommend5">
+                                            <label class="form-check-label ms-2" for="recommend5">Ratings</label>
+                                        </div>
+                                        <div class="form-check d-flex align-items-center ps-0 mb-0">
+                                            <input class="form-check-input ms-0 mt-0" name="recommend" type="checkbox" id="recommend6">
+                                            <label class="form-check-label ms-2" for="recommend6">Reviews</label>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-end border-top pt-3 mt-3">
+                                            <a href="javascript:void(0);" class="btn btn-light btn-sm me-2">Reset</a>
+                                            <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-info br-10 p-3 pb-2 mb-4">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                            <p class="fs-14 fw-medium mb-2 d-inline-flex align-items-center"><i class="isax isax-info-circle me-2"></i>Save an average of 15% on thousands of hotels when you're signed in</p>
+                            <a href="login.html" class="btn btn-white btn-sm mb-2">Sign In</a>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center" id="venues-list">
+
+    {% if providers %}        
+      {% include 'partials/provider.html' %}
+    {% else %}
+        <div role="alert" class="alert alert-error">...</div>
+    {% endif %}
+
+                        <!-- Hotel Grid -->
+                        <div class="col-xl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <a href="hotel-details.html">
+                                        <img src="assets/img/hotels/hotel-05.jpg" class="img-fluid" alt="img">
+                                    </a>
+                                    <div class="fav-item">
+                                        <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-ranking me-1"></i>Trending</span>
+                                        <a href="javascript:void(0);" class="fav-icon">
+                                            <i class="isax isax-heart5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.7</span>
+                                        <p class="fs-14">(360 Reviews)</p>
+                                    </div>
+                                    <h5 class="mb-1 text-truncate"><a href="hotel-details.html">The Luxe Haven</a></h5>
+                                    <p class="d-flex align-items-center mb-2"><i class="isax isax-location5 me-2"></i>Oxford Street, London</p>
+                                    <div class="border-top pt-2 mb-2">
+                                        <h6 class="d-flex align-items-center">Facillities :<i class="isax isax-home-wifi ms-2 me-2 text-primary"></i><i class="isax isax-scissor me-2 text-primary"></i><i class="isax isax-profile-2user me-2 text-primary"></i><i class="isax isax-wind-2 me-2 text-primary"></i><a href="javascript:void(0);" class="fs-14 fw-normal text-default d-inline-block">+2</a></h6>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h5 class="text-primary text-nowrap me-2">$600 <span class="fs-14 fw-normal text-default">/ Night</span></h5>
+                                        <a href="javascript:void(0);" class="d-flex align-items-center overflow-hidden">
+                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+												<img src="assets/img/users/user-09.jpg" class="rounded-circle" alt="img">
+											</span>
+                                            <p class="fs-14">Andrews</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Hotel Grid -->
+
+                        <!-- Hotel Grid -->
+                        <div class="col-xl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <a href="hotel-details.html">
+                                        <img src="assets/img/hotels/hotel-06.jpg" class="img-fluid" alt="img">
+                                    </a>
+                                    <div class="fav-item">
+                                        <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-ranking me-1"></i>Trending</span>
+                                        <a href="javascript:void(0);" class="fav-icon">
+                                            <i class="isax isax-heart5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.5</span>
+                                        <p class="fs-14">(500 Reviews)</p>
+                                    </div>
+                                    <h5 class="mb-1 text-truncate"><a href="hotel-details.html"> No venue here The Urban Retreat</a></h5>
+                                    <p class="d-flex align-items-center mb-2"><i class="isax isax-location5 me-2"></i>Princes Street, Edinburgh</p>
+                                    <div class="border-top pt-2 mb-2">
+                                        <h6 class="d-flex align-items-center">Facillities :<i class="isax isax-home-wifi ms-2 me-2 text-primary"></i><i class="isax isax-scissor me-2 text-primary"></i><i class="isax isax-profile-2user me-2 text-primary"></i><i class="isax isax-wind-2 me-2 text-primary"></i><a href="javascript:void(0);" class="fs-14 fw-normal text-default d-inline-block">+2</a></h6>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h5 class="text-primary text-nowrap me-2">$500 <span class="fs-14 fw-normal text-default">/ Night</span></h5>
+                                        <a href="javascript:void(0);" class="d-flex align-items-center overflow-hidden">
+                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+												<img src="assets/img/users/user-10.jpg" class="rounded-circle" alt="img">
+											</span>
+                                            <p class="fs-14">Robert</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Hotel Grid -->
+
+                        <!-- Hotel Grid -->
+                        <div class="col-xl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <a href="hotel-details.html">
+                                        <img src="assets/img/hotels/hotel-07.jpg" class="img-fluid" alt="img">
+                                    </a>
+                                    <div class="fav-item">
+                                        <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-ranking me-1"></i>Trending</span>
+                                        <a href="javascript:void(0);" class="fav-icon selected">
+                                            <i class="isax isax-heart5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.9</span>
+                                        <p class="fs-14">(450 Reviews)</p>
+                                    </div>
+                                    <h5 class="mb-1 text-truncate"><a href="hotel-details.html">The Grand Horizon</a></h5>
+                                    <p class="d-flex align-items-center mb-2"><i class="isax isax-location5 me-2"></i>Deansgate, Manchester</p>
+                                    <div class="border-top pt-2 mb-2">
+                                        <h6 class="d-flex align-items-center">Facillities :<i class="isax isax-home-wifi ms-2 me-2 text-primary"></i><i class="isax isax-scissor me-2 text-primary"></i><i class="isax isax-profile-2user me-2 text-primary"></i><i class="isax isax-wind-2 me-2 text-primary"></i><a href="javascript:void(0);" class="fs-14 fw-normal text-default d-inline-block">+2</a></h6>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h5 class="text-primary text-nowrap me-2">$400 <span class="fs-14 fw-normal text-default">/ Night</span></h5>
+                                        <a href="javascript:void(0);" class="d-flex align-items-center overflow-hidden">
+                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+												<img src="assets/img/users/user-11.jpg" class="rounded-circle" alt="img">
+											</span>
+                                            <p class="fs-14">Kenneth Pal</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Hotel Grid -->
+
+                        <!-- Hotel Grid -->
+                        <div class="col-xl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <div class="img-slider image-slide owl-carousel nav-center">
+                                        <div class="slide-images">
+                                            <a href="hotel-details.html">
+                                                <img src="assets/img/hotels/hotel-08.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="hotel-details.html">
+                                                <img src="assets/img/hotels/hotel-02.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="hotel-details.html">
+                                                <img src="assets/img/hotels/hotel-03.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="fav-item">
+                                        <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-ranking me-1"></i>Trending</span>
+                                        <a href="javascript:void(0);" class="fav-icon selected">
+                                            <i class="isax isax-heart5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.3</span>
+                                        <p class="fs-14">(380 Reviews)</p>
+                                    </div>
+                                    <h5 class="mb-1 text-truncate"><a href="hotel-details.html">Hotel Evergreen </a></h5>
+                                    <p class="d-flex align-items-center mb-2"><i class="isax isax-location5 me-2"></i>King’s Road, Chelsea</p>
+                                    <div class="border-top pt-2 mb-2">
+                                        <h6 class="d-flex align-items-center">Facillities :<i class="isax isax-home-wifi ms-2 me-2 text-primary"></i><i class="isax isax-scissor me-2 text-primary"></i><i class="isax isax-profile-2user me-2 text-primary"></i><i class="isax isax-wind-2 me-2 text-primary"></i><a href="javascript:void(0);" class="fs-14 fw-normal text-default d-inline-block">+2</a></h6>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h5 class="text-primary text-nowrap me-2">$550 <span class="fs-14 fw-normal text-default">/ Night</span></h5>
+                                        <a href="javascript:void(0);" class="d-flex align-items-center overflow-hidden">
+                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+												<img src="assets/img/users/user-12.jpg" class="rounded-circle" alt="img">
+											</span>
+                                            <p class="fs-14">Timothy</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Hotel Grid -->
+
+                        <!-- Hotel Grid -->
+                        <div class="col-xl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <a href="hotel-details.html">
+                                        <img src="assets/img/hotels/hotel-09.jpg" class="img-fluid" alt="img">
+                                    </a>
+                                    <div class="fav-item">
+                                        <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-ranking me-1"></i>Trending</span>
+                                        <a href="javascript:void(0);" class="fav-icon">
+                                            <i class="isax isax-heart5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.1</span>
+                                        <p class="fs-14">(270 Reviews)</p>
+                                    </div>
+                                    <h5 class="mb-1 text-truncate"><a href="hotel-details.html">Stardust Hotel</a></h5>
+                                    <p class="d-flex align-items-center mb-2"><i class="isax isax-location5 me-2"></i>Bold Street, Liverpool</p>
+                                    <div class="border-top pt-2 mb-2">
+                                        <h6 class="d-flex align-items-center">Facillities :<i class="isax isax-home-wifi ms-2 me-2 text-primary"></i><i class="isax isax-scissor me-2 text-primary"></i><i class="isax isax-profile-2user me-2 text-primary"></i><i class="isax isax-wind-2 me-2 text-primary"></i><a href="javascript:void(0);" class="fs-14 fw-normal text-default d-inline-block">+2</a></h6>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h5 class="text-primary text-nowrap me-2">$450 <span class="fs-14 fw-normal text-default">/ Night</span></h5>
+                                        <a href="javascript:void(0);" class="d-flex align-items-center overflow-hidden">
+                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+												<img src="assets/img/users/user-14.jpg" class="rounded-circle" alt="img">
+											</span>
+                                            <p class="fs-14">Mark Arrin</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Hotel Grid -->
+
+                        <!-- Hotel Grid -->
+                        <div class="col-xl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <div class="img-slider image-slide owl-carousel nav-center">
+                                        <div class="slide-images">
+                                            <a href="hotel-details.html">
+                                                <img src="assets/img/hotels/hotel-10.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="hotel-details.html">
+                                                <img src="assets/img/hotels/hotel-04.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="hotel-details.html">
+                                                <img src="assets/img/hotels/hotel-06.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="fav-item">
+                                        <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-ranking me-1"></i>Trending</span>
+                                        <a href="javascript:void(0);" class="fav-icon">
+                                            <i class="isax isax-heart5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.6</span>
+                                        <p class="fs-14">(650 Reviews)</p>
+                                    </div>
+                                    <h5 class="mb-1 text-truncate"><a href="hotel-details.html">Hotel Serene Valley</a></h5>
+                                    <p class="d-flex align-items-center mb-2"><i class="isax isax-location5 me-2"></i>Broad Street, Bristol</p>
+                                    <div class="border-top pt-2 mb-2">
+                                        <h6 class="d-flex align-items-center">Facillities :<i class="isax isax-home-wifi ms-2 me-2 text-primary"></i><i class="isax isax-scissor me-2 text-primary"></i><i class="isax isax-profile-2user me-2 text-primary"></i><i class="isax isax-wind-2 me-2 text-primary"></i><a href="javascript:void(0);" class="fs-14 fw-normal text-default d-inline-block">+2</a></h6>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h5 class="text-primary text-nowrap me-2">$350 <span class="fs-14 fw-normal text-default">/ Night</span></h5>
+                                        <a href="javascript:void(0);" class="d-flex align-items-center overflow-hidden">
+                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+												<img src="assets/img/users/user-15.jpg" class="rounded-circle" alt="img">
+											</span>
+                                            <p class="fs-14">Brent Hole</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Hotel Grid -->
+
+                        <!-- Hotel Grid -->
+                        <div class="col-xl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <div class="img-slider image-slide owl-carousel nav-center">
+                                        <div class="slide-images">
+                                            <a href="hotel-details.html">
+                                                <img src="assets/img/hotels/hotel-11.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="hotel-details.html">
+                                                <img src="assets/img/hotels/hotel-05.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="hotel-details.html">
+                                                <img src="assets/img/hotels/hotel-03.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="fav-item">
+                                        <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-ranking me-1"></i>Trending</span>
+                                        <a href="javascript:void(0);" class="fav-icon selected">
+                                            <i class="isax isax-heart5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.2</span>
+                                        <p class="fs-14">(550 Reviews)</p>
+                                    </div>
+                                    <h5 class="mb-1 text-truncate"><a href="hotel-details.html">Hotel Skyline Vista</a></h5>
+                                    <p class="d-flex align-items-center mb-2"><i class="isax isax-location5 me-2"></i>Chapel Street, Salford</p>
+                                    <div class="border-top pt-2 mb-2">
+                                        <h6 class="d-flex align-items-center">Facillities :<i class="isax isax-home-wifi ms-2 me-2 text-primary"></i><i class="isax isax-scissor me-2 text-primary"></i><i class="isax isax-profile-2user me-2 text-primary"></i><i class="isax isax-wind-2 me-2 text-primary"></i><a href="javascript:void(0);" class="fs-14 fw-normal text-default d-inline-block">+2</a></h6>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h5 class="text-primary text-nowrap me-2">$700 <span class="fs-14 fw-normal text-default">/ Night</span></h5>
+                                        <a href="javascript:void(0);" class="d-flex align-items-center overflow-hidden">
+                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+												<img src="assets/img/users/user-16.jpg" class="rounded-circle" alt="img">
+											</span>
+                                            <p class="fs-14 text-truncate">John James</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Hotel Grid -->
+
+                        <!-- Hotel Grid -->
+                        <div class="col-xl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <div class="img-slider image-slide owl-carousel nav-center">
+                                        <div class="slide-images">
+                                            <a href="hotel-details.html">
+                                                <img src="assets/img/hotels/hotel-12.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="hotel-details.html">
+                                                <img src="assets/img/hotels/hotel-08.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="hotel-details.html">
+                                                <img src="assets/img/hotels/hotel-10.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="fav-item">
+                                        <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-ranking me-1"></i>Trending</span>
+                                        <a href="javascript:void(0);" class="fav-icon">
+                                            <i class="isax isax-heart5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.8</span>
+                                        <p class="fs-14">(700 Reviews)</p>
+                                    </div>
+                                    <h5 class="mb-1 text-truncate"><a href="hotel-details.html">Hotel Aurora Bliss</a></h5>
+                                    <p class="d-flex align-items-center mb-2"><i class="isax isax-location5 me-2"></i>Castle Street, Cambridge</p>
+                                    <div class="border-top pt-2 mb-2">
+                                        <h6 class="d-flex align-items-center">Facillities :<i class="isax isax-home-wifi ms-2 me-2 text-primary"></i><i class="isax isax-scissor me-2 text-primary"></i><i class="isax isax-profile-2user me-2 text-primary"></i><i class="isax isax-wind-2 me-2 text-primary"></i><a href="javascript:void(0);" class="fs-14 fw-normal text-default d-inline-block">+2</a></h6>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h5 class="text-primary text-nowrap me-2">$650 <span class="fs-14 fw-normal text-default">/ Night</span></h5>
+                                        <a href="javascript:void(0);" class="d-flex align-items-center overflow-hidden">
+                                            <span class="avatar avatar-md flex-shrink-0 me-2">
+												<img src="assets/img/users/user-01.jpg" class="rounded-circle" alt="img">
+											</span>
+                                            <p class="fs-14">Ronald</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Hotel Grid -->
+
+                    </div>
+
+                    <!-- Pagination -->
+                    <nav class="pagination-nav">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="javascript:void(0);" aria-label="Previous">
+                                    <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                            <li class="page-item active"><a class="page-link" href="javascript:void(0);">4</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">5</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0);" aria-label="Next">
+                                    <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- /Pagination -->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /Page Wrapper -->
+
+{% include 'footerr.html' %}
+<script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    });
+</script>
+
+
+
+<!-- jQuery (सबसे पहले) -->
+<script src="https://code.jquery.com"></script>
+<!-- Toastr JS (दूसरे नंबर पर) 
+ <script src="https://cdnjs.cloudflare.com"></script>
+<script type="text/javascript" src="{% static 'assets/src/toastify.js' %}"></script>
+-->
+
+
+<script>
+  document.body.addEventListener('success', function (evt) {
+      console.log("Success event triggered!");    
+      // सुधार: i और bgColors को डिफाइन किया गया है ताकि एरर न आए
+      Toastify({
+        text: "Successfully submitted", // हिंदी संदेश
+        duration: 3000,
+        close: true,
+        gravity: "top", // top or bottom
+        position: "right", // left, center or right
+        style: {
+          background: "linear-gradient(to right, #FF8C00, #FFD700)", // राजस्थानी ग्रेडिएंट
+        }
+      }).showToast();
+    
+  });
+</script>
+<script>
+  document.body.addEventListener('failed', function (evt) {
+      console.log("Success event triggered!");    
+      // सुधार: i और bgColors को डिफाइन किया गया है ताकि एरर न आए
+      Toastify({
+        text: " ohh You have an Error.", // हिंदी संदेश
+        duration: 3000,
+        close: true,
+        gravity: "top", // top or bottom
+        position: "right", // left, center or right
+        style: {
+          background: "linear-gradient(to right, #FF8C00, #FFD700)", // राजस्थानी ग्रेडिएंट
+        }
+      }).showToast();
+    
+  });
+</script>
+<!--
+<div hx-trigger="success from:body" 
+     hx-on::trigger="Toastify({text: 'सफलता!', duration: 3000}).showToast()">
+</div>
+-->

@@ -1,0 +1,427 @@
+                        {% if user.is_authenticated %}
+                        <div class="card-header user-sidebar-header">
+                            <div class="profile-content rounded-pill">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class=" d-flex align-items-center justify-content-center">
+                                        <img src="{% static 'assets/img/users/user-01.jpg' %} " alt="image" class="img-fluid avatar avatar-lg rounded-circle me-1">
+                                        <div>
+                                            <h6 class="fs-16">{{ user.first_name }} {{ user.last_name }}</h6>
+                                            <span class="fs-14 text-gray-6"><a href="{% url 'logout'  %}">Logoutok</a></span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <a href="{% url 'profile_settings' %}" target="_blank" class="p-1 rounded-circle btn btn-light d-flex align-items-center justify-content-center"><i class="isax isax-edit-2 fs-14"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        {% endif %}
+
+
+
+
+
+
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <div class="input-icon">
+                                            <span class="input-icon-addon">
+												<i class="isax isax-message"></i>
+											</span>
+                                            <input type="text" class="form-control" value="" name="first_name" placeholder="enter name ">
+                                            <input type="text" class="form-control" value="" name="last_name" placeholder="enter name ">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <div class="input-icon">
+                                            <span class="input-icon-addon">
+												<i class="isax isax-message"></i>
+											</span>
+                                            <input type="email" class="form-control" value="" name="email" placeholder="enter email ">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <div class="input-icon">
+                                            <span class="input-icon-addon">
+												<i class="isax isax-message"></i>
+											</span>
+                                            <input type="text" class="form-control" value="" name="username" placeholder="enter username ">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <div class="input-icon">
+                                            <span class="input-icon-addon">
+												<i class="isax isax-message"></i>
+											</span>
+                                            <input type="text" class="form-control" value="" name="password" placeholder="enter name ">
+                                        </div>
+                                    </div>
+                                
+
+                                    <div class="mt-3 mb-3">
+                                        <div class="d-flex">
+                                            <div class="form-check d-flex align-items-center mb-2">
+                                                <input class="form-check-input mt-0" type="checkbox" value="" id="agree">
+                                                <label class="form-check-label ms-2 text-gray-9 fs-14" for="agree">
+                                                    I agree with the <a href="terms-conditions.html" class="link-primary fw-medium">Terms Of Service.</a>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <button type="submit" class="btn btn-xl btn-primary d-flex align-items-center justify-content-center w-100">Register<i class="isax isax-arrow-right-3 ms-2"></i></button>
+                                    </div>
+                                    <!--
+                                    <div class="login-or mb-3">
+                                        <span class="span-or">Or</span>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-3">
+                                        <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center me-2">
+                                            <img src="assets/img/icons/google-icon.svg" class="me-2" alt="Img">Google
+                                        </a>
+                                        <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center">
+                                            <img src="assets/img/icons/fb-icon.svg" class="me-2" alt="Img">Facebook
+                                        </a>
+                                    </div>
+                                -->
+                                    <div class="d-flex justify-content-center">
+                                        <p class="fs-14">Already have an account? <a href="login.html" class="link-primary fw-medium">Sign In</a></p>
+                                    </div>
+
+
+                        <a class="btn btn-dark d-inline-flex align-items-center me-0" href="{% url 'loginn'  %}" target="_blank" >
+                            <img src="{% static 'assets/img/logo03tp.png'%}" class="img-fluid avatar avatar-lg rounded-circle me-1"> Login/Signup
+                        </a>                             
+
+
+
+
+
+<!-- jQuery (सबसे पहले) -->
+<script src="https://code.jquery.com"></script>
+<!-- Toastr JS (दूसरे नंबर पर) -->
+<script src="https://cdnjs.cloudflare.com"></script>
+<!-- HTMX (अंत में) -->
+<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
+
+<script type="text/javascript" src="{% static 'assets/src/toastify.js' %}"></script>
+
+<script>
+  document.body.addEventListener('success', function (evt) {
+      console.log("Success event triggered!");    
+      // सुधार: i और bgColors को डिफाइन किया गया है ताकि एरर न आए
+      Toastify({
+        text: "firstसफलता! राजसमंद फॉर्म जमा हो गया", // हिंदी संदेश
+        duration: 3000,
+        close: true,
+        gravity: "top", // top or bottom
+        position: "right", // left, center or right
+        style: {
+          background: "linear-gradient(to right, #FF8C00, #FFD700)", // राजस्थानी ग्रेडिएंट
+        }
+      }).showToast();
+    
+  });
+</script>
+<script>
+  document.body.addEventListener('fail', function (evt) {
+      console.log("Success event triggered!");    
+      // सुधार: i और bgColors को डिफाइन किया गया है ताकि एरर न आए
+      Toastify({
+        text: "firstसफलता! राजसमंद फॉर्म जमा हो गया", // हिंदी संदेश
+        duration: 3000,
+        close: true,
+        gravity: "top", // top or bottom
+        position: "right", // left, center or right
+        style: {
+          background: "yellow", // राजस्थानी ग्रेडिएंट
+        }
+      }).showToast();
+    
+  });
+</script>
+<!--
+<div hx-trigger="success from:body" 
+     hx-on::trigger="Toastify({text: 'सफलता!', duration: 3000}).showToast()">
+</div>
+-->
+
+                                    <div class="col-lg-12">
+                                        <div class="d-flex align-items-center">
+                                            <img src="assets/img/users/user-01.jpg" alt="image" class="img-fluid avatar avatar-xxl br-10 flex-shrink-0 me-3">
+                                            <div>
+                                                <p class="fs-14 text-gray-6 fw-normal mb-2">Recommended dimensions are typically 400 x 400 pixels.</p>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="me-2">
+                                                        <label class="upload-btn" for="fileUpload">Upload</label>
+                                                        <input type="file" id="fileUpload" style="display: none;">
+                                                    </div>
+                                                    <a href="javascript:void(0);" class="btn btn-light btn-md">Remove</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="row">
+                                        {% for field in form %}
+                                        <div class="col-md-6 mb-3"> <!-- यहाँ एक बार स्टाइल लिखी और सब पर लागू -->
+                                            <label>{{ field.label }}</label>
+                                            {{ field }} <!-- यहाँ Widget में दी गई क्लासेस अपने आप आ जाएंगी -->
+                                            {% if field.errors %}
+                                                <div class="text-danger">{{ field.errors }}</div>
+                                            {% endif %}
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    
+                                    
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <label class="form-label">First Name</label>
+                                            <input type="text" class="form-control" value="{{ profile.first_name }}" placeholder="{{ profile.srijan_id }}" name="{{ profile.first_name }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <label class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" value="{{ profilee.last_name }}" name="{{ profilee.last_name }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <label class="form-label">Email</label>
+                                            <input type="text" class="form-control" value="{{ profilee.email }}" name="{{ profilee.email }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <label class="form-label">Phone</label>
+                                            <input type="text" class="form-control" value="{{ profilee.mobile }}" name="{{ profilee.mobile }}">
+                                        </div>
+                                    </div>
+                                -->
+                                </div>
+                            </div>
+                            
+                            <!--
+                            <div class="settings-content">
+                                <h6 class="fs-16 mb-3">Address Information</h6>
+                                <div class="row gy-2">
+                                    <div class="col-lg-12">
+                                        <div>
+                                            <label class="form-label">Address</label>
+                                            <input type="text" class="form-control" value="{{ profilee.address }}" name="{{ profilee.address }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <label class="form-label">Country</label>
+                                            <input type="text" class="form-control" value="भारत/INDIA" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <label class="form-label">State</label>
+                                            <select class="select">
+                                                <option> -- </option>
+                                                <option value="राजस्थान/Rajasthan" selected disabled>राजस्थान/Rajasthan</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <label class="form-label">City</label>
+                                            <select class="select">
+                                                <option disabled>राजसमन्द/Rajsamand</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <label class="form-label">Postal Code</label>
+                                            <input type="text" class="form-control" value="{{ postal_code }}" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            - /Settings Content-->
+
+<style>
+
+.containeruu {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 9px;
+}
+
+#svg-stage {
+  width:60%;
+  max-width:500px;
+  overflow:visible;
+}</style>
+
+
+<div class="containeruu">
+<div class="container">
+  <style>
+    /* SVG ko visible karne ke liye animation */
+    #svg-stage {
+      animation: fadeIn 2s forwards;
+      max-width: 400px;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    .text-style {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: bold;
+      fill: #5d4037;
+    }
+  </style>
+<div class="rajsamand-container">
+  <style>
+    .rajsamand-container {
+      background: #fdf5e6; /* Soft Sand background */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    #svg-stage {
+      width: 300px;
+      height: auto;
+      filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.1));
+    }
+
+    /* Floating Animation for the Pavilion (Chhatri) */
+    .pavilion {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* Wave Animation for the Lake */
+    .wave {
+      animation: waveMove 3s ease-in-out infinite;
+    }
+
+    .wave-2 {
+      animation: waveMove 4s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes waveMove {
+      0%, 100% { transform: translateX(-2px); }
+      50% { transform: translateX(5px); }
+    }
+
+    .text-title {
+      font-family: 'Georgia', serif;
+      font-weight: 900;
+      letter-spacing: 5px;
+      fill: #8b4513;
+      animation: fadeIn 2s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+
+  <svg id="svg-stage" viewBox="0 0 150 150" xmlns="http://www.w3.org">
+    <defs>
+      <!-- Royal Saffron Gradient -->
+      <linearGradient id="royalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#FF8C00;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#D2691E;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+
+    <!-- Lake Waves (Bottom) -->
+    <path class="wave" d="M10 110 Q 40 100, 75 110 T 140 110" stroke="#1E90FF" stroke-width="2" fill="none" />
+    <path class="wave-2" d="M10 120 Q 40 110, 75 120 T 140 120" stroke="#87CEEB" stroke-width="2" fill="none" />
+
+    <!-- Stylized Rajsamand Chhatri (Pavilion) -->
+    <g class="pavilion">
+      <path d="M40 90 H110 V95 H40 Z" fill="#8b4513" /> <!-- Base -->
+      <rect x="45" y="65" width="4" height="25" fill="url(#royalGrad)" /> <!-- Pillars -->
+      <rect x="73" y="65" width="4" height="25" fill="url(#royalGrad)" />
+      <rect x="101" y="65" width="4" height="25" fill="url(#royalGrad)" />
+      <path d="M35 65 Q 75 25, 115 65" fill="url(#royalGrad)" /> <!-- Dome -->
+    </g>
+
+    <text x="75" y="145" text-anchor="middle" class="text-title" font-size="12">RAJSAMAND</text>
+  </svg>
+</div>
+
+  <svg id="svg-stage" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke-width="1.5" opacity="50">
+    <defs>
+      <!-- Rajasthani Sunrise/Royal Gradient -->
+      <linearGradient id="grad-rajsamand" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FF8C00"></stop> <!-- Deep Saffron -->
+        <stop offset="100%" stop-color="#FFD700"></stop> <!-- Gold -->
+      </linearGradient>
+    </defs>
+
+    <!-- Lake ki lehrein (Waves) -->
+    <path stroke="url(#grad-rajsamand)" d="M10 80 Q 35 70, 60 80 T 110 80" stroke-linecap="round" />
+    <path stroke="url(#grad-rajsamand)" d="M10 90 Q 35 80, 60 90 T 110 90" stroke-linecap="round" opacity="0.6"/>
+
+    <!-- Rajsamand 'Nau Chowki' Chhatri ka Stylized Icon -->
+    <path fill="url(#grad-rajsamand)" d="M40 60 L80 60 L75 55 L45 55 Z" /> <!-- Base -->
+    <path stroke="url(#grad-rajsamand)" d="M45 55 L45 40 M60 55 L60 35 M75 55 L75 40" stroke-width="2" /> <!-- Pillars -->
+    <path fill="url(#grad-rajsamand)" d="M35 40 Q 60 20, 85 40 L80 45 L40 45 Z" /> <!-- Dome -->
+
+    <!-- Text for Display -->
+    <text x="50%" y="110" text-anchor="middle" class="text-style" style="font-size: 10px;">RAJSAMAND</text>
+  </svg>
+</div>
+</div>
+
+
+<!--
+ {% include 'homeindexapps.html' %}
+-->
+<!-- main header 3 ka code 
+                                                             <li><a href="{% url 'main:venues'  %}" target="_blank">Venues</a></li>
+                                                            <li><a href="{% url 'main:contacts'  %}" target="_blank">Contacts</a></li>
+                                                            <li><a href="{% url 'main:helpline'  %}" target="_blank">हेल्पलाइन</a></li>
+                                                            <li><a href="{% url 'main:example'  %}" target="_blank">हेल्पलाइन</a></li>
+                                                            <li><a href="{% url 'main:sample_post'  %}" target="_blank">हेल्पलाइन</a></li>

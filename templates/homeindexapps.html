@@ -1,0 +1,118 @@
+{% load static %}
+    <!-- Destination Section -->
+    <section class="section destination-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-lg-10 text-center wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="section-header section-header-four text-center">
+                        <h2 class="mb-2"><span>Popular</span> Locations</h2>
+                        <p class="sub-title">Connecting Needs with Offers for the Professional Flight Services, Book your next flight appointment with ease.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center g-4">
+
+            {% for x in schemecategory %}
+                <!-- Destination Item-->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="location-wrap wow fadeInDown">
+                        <img src="{{ x.image.url }}" alt="img">
+                        <span class="loc-name bg-white">Denmark</span>
+                        <a href="{% url 'schemeview' x.id %}" target="_blank" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
+                    </div>
+                </div>
+                <!-- /Destination Item-->
+             {% endfor %}
+
+                <!-- Destination Item-->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="location-wrap wow fadeInDown">
+                        <img src="{% static 'assets/img/destination/destination-16.jpg' %} " alt="img">
+                        <span class="loc-name bg-white">Belgium</span>
+                        <a href="{% url 'contacts' %} " target="_blank" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
+                    </div>
+                </div>
+                <!-- /Destination Item-->
+
+                <!-- Destination Item-->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="location-wrap wow fadeInDown">
+                        <img src="assets/img/destination/destination-17.jpg" alt="img">
+                        <span class="loc-name bg-white">Barcelona</span>
+                        <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
+                    </div>
+                </div>
+                <!-- /Destination Item-->
+
+                <!-- Destination Item-->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="location-wrap wow fadeInDown">
+                        <img src="assets/img/destination/destination-18.jpg" alt="img">
+                        <span class="loc-name bg-white">Mexico</span>
+                        <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
+                    </div>
+                </div>
+                <!-- /Destination Item-->
+
+                <!-- Destination Item-->
+                <div class="col-lg-4 col-sm-6">
+                    <div class="location-wrap wow fadeInDown">
+                        <img src="assets/img/destination/destination-19.jpg" alt="img">
+                        <span class="loc-name bg-white">Indonesia</span>
+                        <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
+                    </div>
+                </div>
+                <!-- /Destination Item-->
+
+                <!-- Destination Item-->
+                <div class="col-lg-4 col-sm-6">
+                    <div class="location-wrap wow fadeInDown">
+                        <img src="assets/img/destination/destination-20.jpg" alt="img">
+                        <span class="loc-name bg-white">Romania</span>
+                        <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
+                    </div>
+                </div>
+                <!-- /Destination Item-->
+
+                <!-- Destination Item-->
+                <div class="col-lg-4 col-sm-6">
+                    <div class="location-wrap wow fadeInDown">
+                        <img src="assets/img/destination/destination-21.jpg" alt="img">
+                        <span class="loc-name bg-white">India</span>
+                        <a href="flight-grid.html" class="loc-view"><i class="isax isax-arrow-right-1"></i></a>
+                    </div>
+                </div>
+                <!-- /Destination Item-->
+
+            </div>
+        </div>
+    </section>
+    <!-- /Destination Section -->
+
+    <!-- Traveling Section -->
+    <section class="section traveling-sec">
+        <div class="travel-sec-bg">
+            <img src="assets/img/bg/hotel-bg-01.svg" class="bg-1" alt="Img">
+            <img src="assets/img/bg/hotel-bg-02.svg" class="bg-2" alt="Img">
+            <img src="assets/img/bg/hotel-bg-03.svg" class="bg-3" alt="Img">
+        </div>
+        <div class="container">
+            <div class="section-header d-flex align-items-center justify-content-between flex-wrap row-gap-3">
+                <div>
+                    <h2><?= _hia1 ?><span class="text-primary">.</span></h2>
+                </div>
+            </div>
+            <div class="travelers-slider owl-carousel">
+
+                <div class="card travelers-card">
+                    <div class="card-img">
+                      <a href="" target="_blank">
+                        <img src="" class="rounded-top" alt="Img"></a>ppp
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- /Traveling Section -->

@@ -1,0 +1,41 @@
+{% load static %}
+    <div class="main-header main-header-four">
+        <!-- Header Topbar-->
+         {% include 'main-header1.html' %}
+
+        <!-- Header -->
+        <header class="header-six">
+            <div class="container">
+                 {% include 'main-header2.html' %}
+                <div class="offcanvas-overlay"></div>
+                <div class="header-nav">
+                    <div class="main-menu-wrapper">
+                        <div class="navbar-logo">
+                            <a class="logo-white header-logo" href="#">
+                                <img src="{% static 'assets/img/logo02.png' %}" class="logo" alt="Logo" width="64" height="64">
+                            </a>
+                        </div>
+                        <nav id="mobile-menu">
+                            <ul class="main-nav">
+
+                                    {% include 'main-header3.html' %}
+
+                            </ul>
+                        </nav>
+
+
+                                {% include 'main-header4.html' %}
+
+
+                        <div class="header__hamburger d-xl-none my-auto">
+                            <div class="sidebar-menu">
+                                <i class="isax isax-menu5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- /Header -->
+    </div>
+

@@ -1,0 +1,100 @@
+{%load static %}
+                                    {% if messages %}
+                                                                        {% for message in messages  %}
+                                                                        {{ message }}
+                                                                        {% endfor %}
+                                                                        {% endif %}
+
+                        <div class="card-body" id="myprofile">
+                            <h6 class="fs-16 mb-3">Basic Information</h6>
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="avatar avatar-xl flex-shrink-0 me-3 ">
+                                    {% if user.profile_pic %}
+                                        <img src="{{ user.profile_pic.url }}" alt="Profile">
+                                    {% else %}
+                                        <!-- अगर फोटो नहीं है, तो एक डिफ़ॉल्ट 'Avatar' इमेज दिखाओ -->
+                                        <img src="{% static 'assets/img/tours-70.png' %}" alt="Default Profile">
+                                    {% endif %}
+                                </span>
+                                <div class="profile-upload">
+                                    <div class="mb-2">
+                                        <p class="fs-12">Recommended image size is 40px x 40px</p>
+                                    </div>
+                                    <div class="profile-uploader d-flex align-items-center">
+                                        <div class="drag-upload-btn btn btn-sm btn-primary me-2">
+                                            Upload
+                                            <input type="file" class="form-control image-sign" multiple="">
+                                        </div>
+                                        <a href="javascript:void(0);" class="btn btn-light btn-sm">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row border-bottom pb-2 mb-3">
+                                <div class="col-md-6">
+                                    <div class="mb-2">
+                                        <h6 class="fs-14">First Name</h6>
+                                        <p>{{ profile.first_name }} </p>
+                                        <p>{{ profile.account_type }} </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-2">
+                                        <h6 class="fs-14">Last Name</h6>
+                                        <p>{{ profile.middle_name }} </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-2">
+                                        <h6 class="fs-14">Last Name</h6>
+                                        <p>{{ profile.last_name }} </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-2">
+                                        <h6 class="fs-14">Email</h6>
+                                        <p>
+                                        <p>{{ profile.email }} </p>
+                                        <p>{{ profile.username }} </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-2">
+                                        <h6 class="fs-14">Phone</h6>
+                                        <p>{{ profile.mobile }} </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h6 class="fs-16 mb-3">Address Information</h6>
+                            <div class="row g-2">
+                                <div class="col-md-12">
+                                    <div>
+                                        <h6 class="fs-14">Address</h6>
+                                        <p>{{ profile.email }} </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <h6 class="fs-14">Country</h6>
+                                        <p>भारत INDIA</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <h6 class="fs-14">State</h6>
+                                        <p>राजस्थान Rajasthan</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <h6 class="fs-14">District</h6>
+                                        <p>राजसमन्द Rajsamand</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <h6 class="fs-14">Postal Code</h6>
+                                        <p>313324</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>

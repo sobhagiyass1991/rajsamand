@@ -1,0 +1,86 @@
+<!-- Why Choose Us -->
+    <section class="section choose-us-section">
+        <div class="container">
+            <div class="choose-title">
+                <h2> <span class="text-primary"> notifications </span></h2>
+            </div>
+            <div class="row g-4">
+
+                    <!-- Transactions List -->
+                    <div class="card hotel-list mb-0">
+                        <div class="card-body p-0">
+                            <div class="list-header d-flex align-items-center justify-content-between flex-wrap">
+                                <h6>Transactions List</h6>
+                                <div class="d-flex align-items-center flex-wrap">
+                                    <div class="input-icon-start  me-2 position-relative">
+                                        <span class="icon-addon">
+										<i class="isax isax-search-normal-1 fs-14"></i>
+									</span>
+                                        <input type="text" class="form-control" placeholder="Search">
+                                    </div>
+                                    <div class="dropdown me-3">
+                                        <a href="javascript:void(0);" class="dropdown-toggle text-gray-6 btn  rounded border d-inline-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+										Status
+									</a>
+                                        <ul class="dropdown-menu dropdown-menu-end p-3">
+                                            <li>
+                                                <a href="javascript:void(0);" class="dropdown-item rounded-1">Completed</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);" class="dropdown-item rounded-1">Pending</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);" class="dropdown-item rounded-1">Cancelled</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table" id="myTable">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Payment Type</th>
+                                            <th>Credit / Debit</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for x in notifications %}            
+
+                                        <tr>
+                                            <td class="text-gray-9 fw-medium">{{ x.created_at }} </td>
+                                            <td>{{ x.category }} </td>
+                                            <td> {{ x.name_hi }} </td>
+                                            <td>
+                                                <span class="badge badge-success rounded-pill d-inline-flex align-items-center fs-10"><i class="fa-solid fa-circle fs-5 me-1"></i>Completed</span>
+                                            </td>
+                                        </tr>
+
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Transactions List -->
+
+
+
+
+
+            </div>
+            <div class="choose-bg-01">
+                <img src="assets/img/bg/about-bg-stars-bottom.png" alt="image" class="img-fluid">
+            </div>
+            <div class="choose-bg-01">
+                <img src="assets/img/bg/about-bg-stars-bottom.png" alt="image" class="img-fluid">
+            </div>
+            <div class="choose-bg-02">
+                <img src="assets/img/bg/about-bg-stars-top.png" alt="image" class="img-fluid">
+            </div>
+        </div>
+    </section>
+    <!-- /Why Choose Us -->

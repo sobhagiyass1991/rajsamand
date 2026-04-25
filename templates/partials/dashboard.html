@@ -1,0 +1,92 @@
+{% load static %}
+{% include 'header.html' %}
+{% include 'srijandash.html' %}
+   <!-- Page Wrapper -->
+    <div class="content">
+        <div class="container">
+
+            <div class="row">
+
+
+                <!-- Wallet -->
+                <div class="col-xl-9 col-lg-8">
+                    <div class="row">
+
+                        <!-- Wallet List 
+                        <div class="col-md-12 d-flex">
+                            <div class="row flex-fill">
+                                <div class="col-md-3  d-flex">
+                                    <div class="card shadow-none mb-4 flex-fill">
+                                        <div class="card-body">
+                                            <span class="avatar avatar-lg rounded-circle bg-primary mb-3"><i class="isax isax-calendar-15 text-white"></i></span>
+                                            <div class="mb-3">
+                                                <p class="mb-0 text-truncate line-ellipsis-2">Total Users </p>
+                                                <h4>                  <?php echo $conn->query("SELECT * FROM users where type = 'user'  ")->num_rows; ?></h4>
+                                            </div>
+                                            <p class="fs-14"><span class="text-teal fw-medium"></span> last Month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3  d-flex">
+                                    <div class="card shadow-none mb-4 flex-fill">
+                                        <div class="card-body">
+                                            <span class="avatar avatar-lg rounded-circle bg-secondary mb-3"><i class="isax isax-money-send5 text-white"></i></span>
+                                            <div class="mb-3">
+                                                <p class="mb-0 text-truncate line-ellipsis-2">Total Apps</p>
+                                                <h4>                  <?php echo $conn->query("SELECT * FROM userapps where user_type = 'user'  ")->num_rows; ?></h4>
+                                            </div>
+                                            <p class="fs-14"><span class="text-danger fw-medium">-6%</span> last Month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3  d-flex">
+                                    <div class="card shadow-none mb-4 flex-fill">
+                                        <div class="card-body">
+                                            <span class="avatar avatar-lg rounded-circle bg-purple mb-3"><i class="isax isax-money-time5 text-white"></i></span>
+                                            <div class="mb-3">
+                                                <h4>                  <?php echo $conn->query("SELECT * FROM  lssemsenquiry where user_id = {$_SESSION['login_id']}")->num_rows; ?></h4>
+                                                <p class="mb-0">Total Enquiries</p>
+                                            </div>
+                                            <p class="fs-14"><span class="text-teal fw-medium">+9%</span> last Month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3  d-flex">
+                                    <div class="card shadow-none mb-4 flex-fill">
+                                        <div class="card-body">
+                                            <span class="avatar avatar-lg rounded-circle bg-teal mb-3"><i class="isax isax-money-time5 text-white"></i></span>
+                                            <div class="mb-3">
+                                                <h4>60</h4>
+                                                <p class="mb-0">Transactions</p>
+                                            </div>
+                                            <p class="fs-14"><span class="text-teal fw-medium">+7%</span> last Month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         /Wallet List -->
+
+                        <!-- Wallet -->
+                        <!-- /Wallet -->
+
+                    </div>
+
+                    <!-- Transactions -->
+                    <!-- /Transactions -->
+
+                    <!-- Transactions List -->
+                                        <?php include "srijanApps.php" ; ?>
+                    <!-- /Transactions List -->
+
+                </div>
+                <!-- /Wallet -->
+
+            </div>
+        </div>
+    </div>
+    <!-- /Page Wrapper -->
+
+
+
+{% include 'footerr.html' %}

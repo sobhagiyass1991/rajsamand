@@ -1,0 +1,128 @@
+<style>
+/* Avatar styling */
+.avatarr {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 15px;
+    border: 2px solid #ddd;  /* Light border when no hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Light shadow */
+    transition: all 0.3s ease-in-out;
+}
+
+.avatarr:hover {
+    border-color: #4CAF50;  /* Green border on hover */
+    transform: scale(1.05);  /* Slight zoom effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);  /* Enhanced shadow */
+}
+
+/* Avatar image styling */
+.avatarr img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+}
+
+.avatarr:hover img {
+    transform: scale(1.1);  /* Slight zoom effect on the image */
+}
+
+/* Tag (New/Updated) Styling */
+.tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #007bff; /* Blue background */
+    color: white;
+   padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+    animation: blink 1.5s infinite; /* Blinking effect */
+}
+
+/* Blinking animation */
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Specific color for "New" tag */
+.tag.new {
+    background-color: #28a745; /* Green for "New" */
+}
+
+/* Specific color for "Updated" tag */
+.tag.updated {
+    background-color: red; /* Yellow for "Updated" */
+}
+
+
+
+</style>
+            <!-- Tour Types -->
+            <div class="mb-2">
+                <div class="mb-3">
+                    <h5 class="mb-2">Choose type of Tours you are interested</h5>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <div class="d-flex align-items-center">
+                            <a href="dukaanindex.php" target="_blank" class="avatarr avatar-lgg">
+                              <div class="avatar-wrapper">
+                                <img src="assets/img/lssems.png" class="rounded-circlee" alt="img">
+                                    <!--<span class="tag new">New</span> <!-- This tag can be dynamically changed to Updated -->
+                              </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    
+                    <div class="col-md-2">
+                        <div class="d-flex align-items-center">
+                            <a href="shopping/" target="_blank" class="avatarr avatar-lgg">
+                                <img src="assets/img/bids.png" class="rounded-circlee" alt="img">
+                                    <span class="tag updated">Updated</span> This tag can be dynamically changed to Updated
+                            </a>
+                        </div>
+                    </div>
+                -->
+
+
+                </div>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+
+                <div class="row">
+
+
+                -->
+ 
+                </div>
+                                    <br/>
+
+
+                <div class="row">
+                </div>
+                
+                    <br/>
+
+
+                <div class="row">
+ 
+
+                </div>
+            </div>
+            <!-- /Tour Types -->

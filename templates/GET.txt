@@ -1,0 +1,4 @@
+GET
+http://127.0.0.1:8000/accounts/userprofile/assets/uploads/<?php echo $_SESSION['login_profile_pic'] ?>
+[HTTP/1.1 404 Not Found 70ms]
+

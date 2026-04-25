@@ -1,0 +1,22 @@
+<!-- partials/contacts-list.html -->
+<table class="table w-full">
+    <thead>
+        <tr class="bg-base-200">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone </th>
+            <th>File</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="contact-table-body">
+        {% for x in contacts %}
+            {% include 'partials/contact-row.html' %}
+        {% empty %}
+            <tr>
+                <td colspan="3" class="text-center py-4">No contacts found.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

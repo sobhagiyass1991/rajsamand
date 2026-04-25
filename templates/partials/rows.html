@@ -1,0 +1,17 @@
+                                        {% for pincodelist in pincodelist %}
+                                        <tr>
+                                            <td>{{ pincodelist.state }}</td>
+                                            <td>{{ pincodelist.district }}</td>
+                                            <td>{{ pincodelist.circle }}</td>
+                                            <td>{{ pincodelist.office }}</td>
+                                            <td><span class="text-danger">{{ pincodelist.pincode }}</span></td>
+                                            <td>{{ pincodelist.created_at }} {{ pincodelist.updated_at }}</td>
+                                            <td>
+                                                <span class="badge badge-success rounded-pill d-inline-flex align-items-center fs-10"><i class="fa-solid fa-circle fs-5 me-1"></i>{{ x.status }}</span>
+                                            </td>
+                                        </tr>
+                                        {% empty %}
+                                            <tr>
+                                                <td colspan="3" class="text-center py-4">No contacts found.</td>
+                                            </tr>
+                                        {% endfor %}

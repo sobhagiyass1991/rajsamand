@@ -1,0 +1,63 @@
+{% load static %}
+{% include 'header.html' %}
+
+
+    <!-- who we are -->
+    <section class="section place-section lang hi active">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-10 text-center wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="section-header text-center">
+                        <h2 class="mb-2"> <span class="text-primary  text-decoration-underline">कला एवं संस्कृति </span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-12 ">
+                    <div class="destination-settt  woww fadeInUpp">
+                        <div class="destination-img">
+                            <img src="{% static 'assets/img/ac1.png' %}" alt="dances">
+                        </div>
+						<div class="btn btn-success"><a href="{% url 'dances'  %}" target="_blank"><i class="fa fa-arrow-right"></i>विवरण देखें</a></div>
+                    </div>
+                    <br>
+                    <div class="destination-sett  wow fadeInDown">
+                        <div class="destination-img">
+                            <img src="{% static 'assets/img/ac5.png' %}" alt="dances">
+                        </div>
+						<div class="btn btn-success"><a href="{% url 'paintings'  %}" target="_blank"><i class="fa fa-arrow-right"></i>विवरण देखें</a></div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="destination-sett wow fadeInUp">
+                        <div class="destination-img">
+                            <img src="{% static 'assets/img/ac2.png' %}" alt="dances">
+                        </div>
+						<div class="btn btn-success"><a href="{% url 'deity'  %}" target="_blank"><i class="fa fa-arrow-right"></i>विवरण देखें</a></div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="destination-sett wow fadeInUp">
+                        <div class="destination-img">
+                            <img src="{% static 'assets/img/ac3.png' %}" alt="dances">
+                        </div>
+						<div class="btn btn-success"><a href="{% url 'fairs'  %}" target="_blank"><i class="fa fa-arrow-right"></i>विवरण देखें</a></div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="destination-sett wow fadeInUp">
+                        <div class="destination-img">
+                            <img src="{% static 'assets/img/ac4.png' %}" alt="dances">
+                        </div>
+						<div class="btn btn-success"><a href="{% url 'festivals'  %}" target="_blank"><i class="fa fa-arrow-right"></i>विवरण देखें</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Place Section -->
+
+
+
+{% include 'footerr.html' %}

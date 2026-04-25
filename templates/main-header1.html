@@ -1,0 +1,99 @@
+{% load static %}
+
+        <div class="header-topbar header-top-six text-center bg-transparent">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                    <div class="d-flex align-items-center flex-wrap">
+                        {# {% include 'find.html' %} #}
+                    </div>
+
+
+                    <div class="navbar-logo mb-2">
+                        <a class="logo-dark header-logo" href="index.php">
+                            <img src="{% static 'assets/img/logo02.png'%}" class="logo" alt="Logo" width="64" height="64">
+                        </a>
+                        <a class="logo-white header-logo" href="index.php">
+                            <img src="{% static 'assets/img/logo02.png'%}" class="logo" alt="Logo" width="64" height="64">
+                        </a>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="dropdown mb-2 me-3">
+
+							<a href="#" onclick="setLang('hi')">Hindi</a> |
+							<a href="#" onclick="setLang('en')">English</a>
+
+                            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                Hindi
+                            </a>
+                            <ul class="dropdown-menu p-2 mt-2">
+
+
+                                <li><a class="dropdown-item rounded" href="#" onclick="setLang('hi')">Hindi</a></li>
+                                <li><a class="dropdown-item rounded" href="#" onclick="setLang('en')">English</a></li>
+                            </ul>
+                        </div>
+
+
+                        <div class="me-3 mb-2">
+                            <a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle">
+                                <i class="isax isax-moon"></i>
+                            </a>
+                            <a href="javascript:void(0);" id="light-mode-toggle" class="theme-toggle">
+                                <i class="isax isax-sun-1"></i>
+                            </a>
+                        </div>
+                        <div>
+                        <div class="header-btn d-flex align-items-center">
+                            <div class="cart-dropdown me-3">
+                                <a href="dashboard.html" class="position-relative">
+                                    <i class="isax isax-user"></i>
+                                </a>
+                            </div>
+                            <div class="fav-dropdown me-3">
+                                <a href="wishlist.html" class="position-relative">
+                                    <i class="isax isax-heart"></i><span class="count-icon bg-secondary text-gray-9">0</span>
+                                </a>
+                            </div>
+                            <div>
+
+                            </div>
+                            
+                            <div class="me-3">
+                                <a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle">
+                                    <i class="isax isax-moon"></i>
+                                </a>
+                                <a href="javascript:void(0);" id="light-mode-toggle" class="theme-toggle">
+                                    <i class="isax isax-sun-1"></i>
+                                </a>
+                            </div>
+                            <div class="header__hamburger d-xl-none my-auto">
+                                <div class="sidebar-menu">
+                                    <i class="isax isax-menu5"></i>
+                                </div>
+                            </div>
+                        </div>
+
+{% if user.is_authenticated %}
+                            {{ user.username }}
+                        <a class="btn btn-sm btn-danger d-inline-flex align-items-center me-0" href="{% url 'accounts:logout'  %}" target="_blank" 
+                             class=""> Logout 
+                        </a>                             
+{% else %}
+                        <a class="btn btn-dark d-inline-flex align-items-center me-0" href="{% url 'accounts:login'  %}" target="_blank" >
+                            <img src="{% static 'assets/img/logo03tp.png'%}" class="img-fluid avatar avatar-lg rounded-circle me-1"> Login
+                        </a>                             
+                        <a class="btn btn-dark d-inline-flex align-items-center me-0" href="{% url 'accounts:register'  %}" target="_blank" >
+                                 <img src="{% static 'assets/img/logo03tp.png'%}" class="img-fluid avatar avatar-lg rounded-circle me-1"> Login/Signup
+                        </a>                             
+{% endif %}
+                        
+
+                         
+
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
