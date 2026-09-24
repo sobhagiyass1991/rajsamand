@@ -49,7 +49,7 @@ class PropertyForm(forms.ModelForm):
     ("Black" , "Black"),
     ]
     title = forms.CharField(widget = forms.TextInput(attrs={"class": "form-control",}))
-    ptype = forms.ChoiceField(choices=PTYPES, widget = forms.Select(attrs={"class": "form-check-input mt-0",}))
+    ptype = forms.ChoiceField(choices=PTYPES, widget = forms.RadioSelect(attrs={"class": "form-check-input mt-0",}))
     configs = MultipleChoiceField(choices=COLORS_CHOICES, widget = forms.CheckboxSelectMultiple(attrs={"class": "form-check-input ms-0 mt-0", "type" : "checkbox"}))
     status = BooleanField(required=False, widget = forms.CheckboxInput(attrs={"class": "form-check-input ms-0 mt-0",}))
     class Meta:
