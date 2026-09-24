@@ -2,7 +2,8 @@ import json
 from django.shortcuts import render, get_object_or_404, redirect
 from django import forms
 from django.contrib.auth.models import User
-from .models import Contact, Pincode, ServiceProvider
+from .models import Contact, Pincode 
+from localservices.models import ServiceProvider
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 

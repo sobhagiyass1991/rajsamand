@@ -1,11 +1,52 @@
-<tr>
-	<th scope="row"> 		 1  	</th>
-	<td> {{ user.first_name }} {{ user.middle_name }} {{ user.last_name }}	</td>
-	<td> {{ user.username }} {{ user.email }}</td>
-	<td> {% if user.is_active == 1  %}  		<span class="badge badge-pill badge-success">Success</span> {% endif %}	</td>
-	<td> 		<button hx-get="{% url 'accounts:usersdetails' user.id %}" 
-						hx-target="#userdetails"
-						hx-swap="outerHTML" 
-						type="button" class="btn btn-sm btn-info btn-round">Details</button>
-	</td>
+<tr>    
+    <td>{{ usr.id}}</td>
+    <td>{{ usr.first_name }} {{ usr.middle_name }} {{ usr.last_name }}</td>
+    <td>{{ usr.username }} {{ usr.email }}</td>
+    <td>
+        {% if usr.is_active %}
+            <span class="badge badge-success">Active</span>
+        {% else %}
+            <span class="badge badge-danger">Inactive</span>
+        {% endif %}
+    </td>
+    <td>{{ usr.role.name }} 
+        {% for sub in usr.teacher.subject.all %}
+            {{ sub.name }}
+        {% endfor %}
+        {% for cname in usr.teacher.classname.all %}
+            {{ cname.name }}
+        {% endfor %}
+    </td>
+    <td>
+        {% if request.user.role.name == 'School' %}
+        <button 
+            hx-get="{% url 'accounts:getteacher' usr.id %}" 
+            hx-target="#teacherform"
+            hx-swap="outerHTML"
+            class="btn btn-sm btn-danger">
+            Edit this user
+        </button>
+		{% endif %}
+    </td>
+    <td>
+
+        {% if usr.role.name == 'Student' %}
+        <button 
+            hx-get="{% url 'accounts:getstudent' usr.id %}" 
+            hx-target="#studentform"
+            hx-swap="outerHTML"
+            class="btn btn-sm btn-danger">
+            Edit this {{ usr.id}}
+        </button>
+		{% endif %}
+    </td>
+    <td>    
+        <button 
+            hx-get="{% url 'accounts:usersdetails' usr.id %}" 
+            hx-target="#userdetails"
+            hx-swap="outerHTML"
+            class="btn btn-sm btn-info">
+            Details
+        </button>
+    </td>
 </tr>

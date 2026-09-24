@@ -1,0 +1,16 @@
+<tr>
+    <td>{{ mark.id}}</th>
+    <td>{{ mark.first_name }} {{ mark.middle_name }}  {{ mark.last_name }}</td>
+    <td> {% for cn in  mark.classname.all %}  
+            {{ cn.name }}
+         {% endfor %} 
+    </td>
+    <td> {% for sub in mark.subject.all %} 
+            {{ sub.name }}
+         {% endfor %} 
+    </td>
+    <td>{{ mark.first }} </td>
+    <td>{{ mark.second }} </td>
+    <td>{{ mark.third }} </td>
+    <td>{{ mark.total }}  </td>
+</tr>

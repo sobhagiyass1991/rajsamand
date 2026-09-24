@@ -1,0 +1,23 @@
+{% load humanize %}
+<tr id="book-{{ x.id }}">
+    <td>{{ x.title }}</td>
+    <td>{{ x.author }}</td>
+    <td>{{ x.isbn }}</td>
+    <td>{{ x.publisher }}</td>
+    <td>{{ x.created_at }} ({{ x.created_at|naturalday }} ago ) {{ x.updated_at }} {{ x.updated_at|naturalday }}</td>
+    <td>{{ x.status }}</td>
+    <td>
+        <button class="btn btn-info" 
+                hx-get="{% if x.id %}{% url 'bookbank:getedit' x.id  %}{% endif %}" 
+                hx-target="#editbook"
+                hx-encoding="multipart/form-data"
+                hx-swap="outerHTML">Edit
+        </button>
+        <button class="btn btn-danger" 
+                hx-delete="{% if x.id %}{% url 'blood:delete' x.id  %}{% endif %}" 
+                hx-target="#donor-{{ x.id }}"
+                hx-swap="delete"
+                hx-confirm="Are you sure you wish to delete your account?">delete
+        </button>
+    </td>
+</tr>

@@ -1,0 +1,29 @@
+{% load humanize %}
+<tr id="lostfound-{{ x.id }}">
+    <td>{{ x.title }} 
+                                    {% if x.image %}
+                                        <img src="{{ x.image.url }}" width="50" height="50" alt="Profile">
+                                    {% else %}
+                                        <!-- अगर फोटो नहीं है, तो एक डिफ़ॉल्ट 'Avatar' इमेज दिखाओ -->
+                                        <img src="" alt="Default Profile">
+                                    {% endif %}
+    </td>
+    <td>{{ x.category.title }}</td>
+    <td>{{ x.ownername }}</td>
+    <td>{{ x.mobile }}</td>
+    <td>{{ x.created_at }} ({{ x.created_at|naturalday }} ago ) {{ x.updated_at }} {{ x.updated_at|naturalday }}</td>
+    <td>{{ x.status }}</td>
+    <td>
+        <button class="btn btn-info" 
+                hx-get="{% if x.id %}{% url 'lostfound:getedit' x.id  %}{% endif %}" 
+                hx-target="#editlostfoundform" 
+                hx-swap="outerHTML">Edit
+        </button>
+        <button class="btn btn-danger" 
+                hx-delete="{% if x.id %}{% url 'blood:delete' x.id  %}{% endif %}" 
+                hx-target="#donor-{{ x.id }}"
+                hx-swap="delete"
+                hx-confirm="Are you sure you wish to delete your account?">delete
+        </button>
+    </td>
+</tr>

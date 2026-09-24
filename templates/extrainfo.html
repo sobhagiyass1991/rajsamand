@@ -1,0 +1,258 @@
+    COLORS_CHOICES = {
+    "Park": "Park",
+    "Green": "Green",
+    "Black": "Black",
+    }
+
+    print(kwargs.items())
+        print(kwargs["initial"])
+        print(kwargs["instance"].configs)
+       for boundfield in editform:
+           print(boundfield)
+       print(type(editform.fields["configs"].widget))
+        self.fields["configs"].initial  = kwargs['instance'].configs
+        print(f"initial:{self.fields["configs"].initial}")
+        print(f" yah raha kwargs data {kwargs['initial']}")
+        self.data = kwargs['initial'].values()
+        print(self.data)
+        for x in self.data:
+            self.fields["configs"].widget.attrs.update({"checked": ""})
+        if kwargs['instance'].status == True:
+            self.fields["status"].widget.attrs.update({"checked": ""})
+        else:
+            self.fields["status"].widget.attrs.update({})
+
+        print(self.fields["configs"].widget)
+        self.fields["configs"].initial = kwargs['instance'].configs
+        print(f" status ka initial {self.fields["status"].initial}")
+        print(f" configs ka initial {self.fields["configs"].initial}")
+        print(f"choices:{self.fields["configs"].choices}")
+        list = []
+        for x in self.fields["configs"].choices:
+            print(f" choice is {x}")
+            cl = list.append(x)
+            print(f"new list is {cl}")
+        myset = set(list)
+        myini = self.fields["configs"].initial
+        myini = set(myini)
+        for x in myset:
+            if x in myini:
+                self.fields["configs"].widget.attrs.update({"checked": ""}) 
+            else:
+                self.fields["status"].widget.attrs.update({})
+
+                print(f" yah hai kwargs {kwargs['instance'].configs}")
+        self.choice = self.fields["configs"].choices
+        print(f" yah hai choices {self.choice}")
+        self.list = kwargs['instance'].configs
+        print(f" yah hai list {self.list}")
+        for x in self.choice:
+            print(x)
+
+        for j in self.list:
+            print(j)
+
+
+            if x == j: 
+                    self.fields["configs"].widget.attrs["checked"] = True
+                else:
+                    self.fields["configs"].widget.attrs.update({"placeholder": "hhh"})
+                                <div class="row">
+
+                                    {% for field in editform %}
+
+                                   <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label"> {{ field.label_tag }} <span
+                                                    class="text-danger">*</span></label>
+                                                        {{ field }}
+                                        </div>
+                                   </div>
+
+                                                                                {% endfor %}          
+
+
+
+                                </div>
+
+                                print(f" yah hai forms me instance {self.instance}")
+        id = kwargs['instance'].configs
+        print(id)
+        getobj = PropertyList.objects.get(id=self.instance.id)
+        print(getobj)
+        print(getobj.configs)
+        print(f" here is kwargs {kwargs}")
+        mylist = ['Park', 'green', 'blue'] 
+        print(f" form se aa raha data {self.list}")
+        print(type(self.fields["configs"]))
+        print(dir(self.fields["configs"]))
+        print(vars(self.fields["configs"]))
+        print(self.fields["configs"].widget)
+                                    {% if field.name == "configs" %}
+                                    <div class="col-md-6">
+                                        <h6 class="fs-16 mb-2"> Comfort & Facilities</h6>
+                                            {% for x in field.configs %}
+                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                <label class="form-check-label ms-2" for="service-01">
+                                                    {{ x }}
+                                                </label>
+                                                </div>
+                                            {% endfor %}                                    
+                                   </div> 
+                                                                            {% endif %}                                         
+
+                                                                            <div class="col-md-6">
+                                         {% if editform.configs %}
+                                     <h6 class="fs-16 mb-2"> Comfort & Facilities</h6>
+                                        {% if editform.configs.widget_type == 'checkbox' %}
+                                        <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                            <label class="form-check-label ms-2" for="service-01">
+                                            {{ editform.configs }}
+                                        </label>
+                                        </div>
+
+                                                                                {% endif %}                                    
+                                                                                {% endif %}                                    
+                                   </div> 
+<div>
+    <fieldset>
+  <legend>Configs:</legend>
+
+
+
+<div id="id_configs" class="form-check-input ms-0 mt-0"><div>
+    <label for="id_configs_0"><input type="checkbox" name="configs" value="Park" class="form-check-input ms-0 mt-0" checked id="id_configs_0">
+ Park</label>
+
+</div><div>
+    <label for="id_configs_1"><input type="checkbox" name="configs" value="green" class="form-check-input ms-0 mt-0" checked id="id_configs_1">
+ Green</label>
+
+</div><div>
+    <label for="id_configs_2"><input type="checkbox" name="configs" value="black" class="form-check-input ms-0 mt-0" checked id="id_configs_2">
+ Black</label>
+
+</div>
+</div></fieldset>
+
+COLORS_CHOICES = {
+    "Park": "Park",
+    "green": "Green",
+    "black": "Black",
+    }
+
+        choices=COLORS_CHOICES,
+
+
+    configs = MultipleChoiceField(
+        required=False,
+        widget=forms.CheckboxSelectMultiple(attrs={"class": "form-check-input ms-0 mt-0",})
+    )
+
+
+
+<fieldset>
+    <legend>{{ editform.configs.label }}</legend>
+    {% for checkbox in editform.configs %}
+    <div class="myradio">
+        {{ checkbox }}
+    </div>
+    {% endfor %}
+</fieldset>                                                                        
+
+    {% for checkbox in editform.configs %}
+    <div class="myradio">
+        {{ checkbox }}
+    </div>
+    {% endfor %}
+                                        {% if field.name != "configs" %}
+                                        {% endif %}                                    
+
+                                        {% if field.name == "type" %}
+                                                                             {{ field.label_tag }}
+                                                                             <div class="row">
+                                                                            {% for radio in editform.type %}
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-check-custom">
+                                                                                        <label class="form-check-label" for="radioOne">{{ radio }}</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                             {% endfor %}   
+                                                                             </div>
+
+                                                                             {% if field.name != "type" %}
+                                                                                            {% for radio in editform.type %}
+                                                                                                {{ radio }}
+                                                                                            {% endfor %}
+                                                                                        {% endif %}   
+                                                            <li><a href="{% url 'main:testing'  %}" target="_blank">Django Testing </a></li>
+
+# Create your views here.
+def lssemsindex(request):
+    providers = ServiceProvider.objects.all()
+    context = {
+        'providers' : providers,
+
+    }
+    print(f"Providers are total {providers}")
+    return render(request, "lssemsindex.html", context)
+
+@login_required
+@vary_on_headers("HX-Request")
+
+path("bookstatus/" , bookstatus, name="bookstatus"),    
+    path("getaddstatus/" , getaddstatus, name="getaddstatus"),
+    path("savenewstatus/" , savenewstatus, name="savenewstatus"),
+    path("geteditstatus/<int:id>/" , geteditstatus, name="geteditstatus"),
+    path("saveeditstatus/<int:id>/" , saveeditstatus, name="saveeditstatus"),
+
+    hx-on::after-request="if(event.detail.successful) document.getElementById('id_category').innerHTML = ''"
+
+<select name="category" lang="en" data-minimum-input-length="2" data-theme="default" data-allow-clear="false" 
+data-ajax--url="/select2/fields/auto.json" data-ajax--cache="true" data-ajax--type="GET" required id="id_category" 
+class="django-select2 django-select2-heavy" 
+data-field_id="IjMyZDJjNTc5LTNhMTAtNDI4ZS1iN2YyLWU2ZDEyZTBlZDhhOSI:1x5gEQ:YrANQnN7YhXO9qK99vt3cnYo-nqEq7NkiMQGOUuPYsY">
+  <option value="1" selected>Category object (1)</option>
+
+</select>
+
+<img id="image" src="smiley.gif" width="160" height="120">
+
+<script>
+document.getElementById("image").src = "landscape.jpg";
+</script>
+
+
+this is code in main-header0 file 
+        <!-- Header 1 here Header Topbar             {% include 'main-header1.html' %} -->
+
+    
+from django_select2 import forms as s2forms
+from .models import Category
+
+class AuthorWidget(s2forms.ModelSelect2Widget):
+    search_fields = [
+        "category__icontains",
+    ]
+
+                widgets = {
+            "category": AuthorWidget,
+            }
+
+                    <div class="filtr-item col-sm-2" data-category="{{ module.app.id }}" data-sort="">
+                      <a href="{% url 'main:lssemsindex' %}" target="_blank" data-toggle="lightbox" data-title="">
+                        <img src="https://via.placeholder.com/300/FFFFFF?text=1" class="img-fluid mb-2" alt="img"/>{{ module.name }}
+                      </a>
+                    </div>
+                    <div class="filtr-item col-sm-2" data-category="{{ module.app.id }}" data-sort="">
+                      <a href="{% url 'main:lssems' %}" target="_blank"  data-title="">
+                        <img src="https://via.placeholder.com/300/FFFFFF?text=1" class="img-fluid mb-2" alt="img"/>
+                        LSSEMS list 
+                      </a>
+                    </div>
+                    <div class="filtr-item col-sm-2" data-category="{{ module.app.id }}" data-sort="">
+                      <a href="{% url 'main:indexx' %}" target="_blank"  data-title="">
+                        <img src="https://via.placeholder.com/300/FFFFFF?text=1" class="img-fluid mb-2" alt="img"/>
+                        Indexx 
+                      </a>
+                    </div>

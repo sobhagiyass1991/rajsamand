@@ -7,11 +7,13 @@ from django.views.decorators.vary import vary_on_headers
 from django.contrib import messages
 from django.http import HttpResponse, FileResponse
 from django.db.models import Q 
-from .forms import ProfileForm, ContactForm, PincodeForm, ServiceForm
+from .forms import ProfileForm, ContactForm, PincodeForm
 import calendar
 import json
 import io
-from .models import Tehsil , Notification, SchemeCategory,  Scheme, Message, Contact, Venue, Pincode, LssemsService, ServiceProvider
+from .models import Tehsil , Notification, Message, Contact, Pincode 
+from utilities.models import UtilityCategory
+from government.models import SchemeCategory,  Scheme
 #from accounts.models import SrijanApp, SrijanModule
 #from accounts.models import User
 from django.contrib.auth import get_user_model
@@ -85,8 +87,8 @@ def home(request):
      schemecategory = SchemeCategory.objects.all()
      #apps = SrijanApp.objects.all()
      #modules = SrijanModule.objects.all()
-     services = LssemsService.objects.all()
-     print(f"here is {services.count}")
+     #services = LssemsService.objects.all()
+     #print(f"here is {services.count}")
  
      return render(request, "home.html", {
 #        'mytehsils': mytehsils,
@@ -94,125 +96,8 @@ def home(request):
         'schemecategory' : schemecategory,
         #'apps' : apps,
         #'modules' : modules,
-        'services' : services
+        #'services' : services
         })
-
-def lssemsindex(request):
-    providers = ServiceProvider.objects.all()
-    context = {
-        'providers' : providers,
-
-    }
-    print(f"Providers are total {providers}")
-    return render(request, "lssemsindex.html", context)
-
-@login_required
-@vary_on_headers("HX-Request")
-def lssemsedit(request, id):
-    if request.htmx and request.method == "GET":
-       id = get_object_or_404(ServiceProvider, id= id, user=request.user)
-       #getid = ServiceProvider.objects.get('id')
-       editform = ServiceForm(instance=id)
-       return render(request, "partials/editservice.html", { 'editform' : editform }  )
-
-    if request.htmx and request.method == "POST":
-       id = get_object_or_404(ServiceProvider, id= id, user=request.user)
-       print(f"yaha raha villain {id}")
-       #getid = ServiceProvider.objects.get('id')
-       form = ServiceForm(request.POST, instance=id)
-       if form.is_valid():
-          obj = form.save(commit=False)
-          obj.user = request.user
-          obj.save()
-          print(f"Here the new data {obj}")
-          if request.headers.get('HX-Request') and obj:
-              #messages.success(request, "your data is saved")
-              myservices = ServiceProvider.objects.filter(user=request.user).order_by('-id')
-              print(f"did you get this {myservices}")
-              contextt  = {
-                  'x' : obj,
-                  #'form'  : form ,
-               }
-              response = render(request, "partials/myservices.html", contextt)
-              response["HX-Trigger"] = json.dumps({"mysuccess": "डेटा सृजन में सेव हो गया!"})
-              return response 
-            
-       else:
-            form = ServiceForm(request.POST)
-            failed = messages.error(request, "failed again" )
-            print(f"here is error {form.errors}")
-            print(f"here is error {form.non_field_errors}")
-            response = render(request, "partials/addserviceform.html", {'form' : form} )
-            response['HX-Retarget'] = '#addserviceform'
-            response['HX-Reswap'] = 'outerHTML'
-            response['HX-Trigger'] = json.dumps({"failed": " ojk डेटा सृजन में सेव हो गया!"})
-            return response 
-      
-
-
-@login_required
-@vary_on_headers("HX-Request")
-def lssems(request, *args, **kwargs):
-    profile = User.objects.get(id=request.user.id)
-    myservices = ServiceProvider.objects.filter(user=request.user).all()
-    editid = request.GET.get('editid')
-    print(f"here is my edit id {editid}")
-    if request.headers.get('HX-Request'):
-        if request.method == "GET" and editid :
-            print(f"here is args {args}")
-            print(f"here is kwargs {kwargs}")
-            print(f"GET वाला डेटा: {request.GET}")
-            print(f"POST वाला डेटा: {request.POST}")
-            getdata = get_object_or_404(ServiceProvider, id = editid)
-            profile = User.objects.get(id=request.user.id)
-            editform = ServiceForm(request.POST, instance = getdata)
-            print(f"here is id i get for edit{editid}")
-            print(f"here is another form for efir {editform}")
-            return render(request, "partials/editservice.html", { 'editform' : editform , 'getdata' : getdata }  )
-
-
-    if request.method == "POST":
-        form = ServiceForm(request.POST)
-        if form.is_valid():
-           obj = form.save(commit=False)
-           obj.user = request.user
-           obj.save()
-           print(f"Here the new data {obj}")
-           if request.headers.get('HX-Request') and obj:
-              #messages.success(request, "your data is saved")
-              myservices = ServiceProvider.objects.filter(user=request.user).order_by('-id')
-              print(f"did you get this {myservices}")
-              contextt  = {
-                  'x' : obj,
-                  #'form'  : form ,
-               }
-              response = render(request, "partials/myservices.html", contextt)
-              response["HX-Trigger"] = json.dumps({"mysuccess": "डेटा सृजन में सेव हो गया!"})
-              return response 
-            
-        else:
-              form = ServiceForm(request.POST)
-              failed = messages.error(request, "failed again" )
-              print(f"here is error {form.errors}")
-              print(f"here is error {form.non_field_errors}")
-              response = render(request, "partials/addserviceform.html", {'form' : form} )
-              response['HX-Retarget'] = '#addserviceform'
-              response['HX-Reswap'] = 'outerHTML'
-              response['HX-Trigger'] = json.dumps({"failed": " ojk डेटा सृजन में सेव हो गया!"})
-              return response 
-
-    if request.method == "GET":
-       form = ServiceForm(instance = profile)
-       if request.headers.get('HX-Request'):
-           return render(request, "partials/addserviceform.html", {'form' : form})
-
-    page_obj = Paginator(myservices ,10)
-    page_obj = page_obj.get_page(request.GET.get('page'))
-    print(f"page ko dikhao {page_obj}")
-    context = {
-        'page_obj' : page_obj
-    }
-    return render(request, "lssems.html", context)
 
 def events(request):
     year = 2026
@@ -297,7 +182,11 @@ def economy(request):
     return render(request, "economy.html")
 
 def utilities(request):
-    return render(request, "utilities.html")
+    category = UtilityCategory.objects.all()
+    context = {
+        'category' : category
+    }
+    return render(request, "utilities.html", context)
 
 def rural(request):
     return render(request, "rural.html")
@@ -375,45 +264,6 @@ def profile_settings(request):
         "profile": profile_obj,
     })
 
-def venues(request):
-    import time 
-    time.sleep(1)
-    total = Venue.objects.count()
-    venues = Venue.objects.exclude(status=0).select_related('tehsil').all()
-    tehsil = Tehsil.objects.all()
-
-    query = request.GET.get('search_venues', '').strip()
-    sortt_by = request.GET.get('sort_by')
-
-    getteh = request.GET.get('tehsil')
-    if getteh and getteh!= "All":
-        venues = Venue.objects.exclude(status=0).select_related('tehsil').filter(tehsil__name_en__exact=getteh)
-        print(f"Here is venue data {venues}")
-    getrp = request.GET.get('rp')
-    if getrp and "_" in getrp:
-        low, high = getrp.split("_")
-        venues = Venue.objects.exclude(status=0).select_related('tehsil').filter(Q(tehsil__name_en=getteh) & Q(room_price__gte=int(low), room_price__lte = int(high)))
-    if query:
-        venues = Venue.objects.exclude(status=0).select_related('tehsil').filter(Q(name_en__icontains=query) | Q(address_en__icontains=query))
-    if sortt_by == "low":
-        venues = Venue.objects.exclude(status=0).order_by('room_price')      
-    elif sortt_by == "high":
-        venues = Venue.objects.exclude(status=0).order_by('-room_price')      
-    #else:
-     #   venues = Venue.objects.exclude(status=0).select_related('tehsil').all()
-        print(f"Tehsil is {getteh}")
-        print(f"Final Count: {venues.count()}")
-    if request.headers.get('HX-Request') and request.method == "GET":
-        return render(request, "partials/venue.html", { 'venues' : venues } )
-        
-    return render(request, "venues.html", 
-                  { 
-                      'venues' : venues, 
-                      'total' : total , 
-                      'tehsil' : tehsil 
-                } )
-    
-
 def sample_post(request):
     print("--- SERVER HIT SUCCESSFUL ---")
     import time 
@@ -459,3 +309,6 @@ def sample_post(request):
         'circles' : circles
     })
 
+
+def create_contact(request):
+    pass

@@ -3,7 +3,7 @@
     <h3 class="text-lg font-bold">Hello!</h3>
     <p class="py-4">Press ESC key or click the button below to close</p>
     <div class="modal-action">
-    <form hx-post="{% url 'create_contact' %}" 
+    <form hx-post="{% url 'main:create_contact' %}" 
               hx-target="#contacts-list"  
               hx-swap="innerHTML"
               hx-encoding="multipart/form-data"

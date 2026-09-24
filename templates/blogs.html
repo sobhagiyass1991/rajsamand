@@ -1,0 +1,156 @@
+{% load static %}
+{% include 'header.html' %}
+    <!-- Page Wrapper -->
+    <div class="content">
+        <div class="container">
+
+            <!-- Hotel Search -->
+            <!-- /Hotel Search -->
+                        <div id="editservice"></div>
+
+            <!-- Hotel Types -->
+            <!-- /Hotel Types -->
+
+            <div class="row">
+                <!-- Hotel Booking -->
+                <div class="col-md-12">
+
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h6>My Profile</h6>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <button type="button" hx-get="{% url 'blogs:getadd' %}" 
+                                                      hx-target="#addblogform" 
+                                                      hx-swap="outerHTML" 
+                                                      hx-trigger="click" 
+                                                      class="btn btn-light d-flex align-items-center justify-content-center" 
+                                                      value="Edit" ><i class="isax isax-edit-2 fs-14"></i>Edit
+                                </button>
+                             </div>
+                            
+                        </div>
+
+                        <div id="editblog"></div>
+                        <div id="addblogform"></div>
+                        <div id="lssemsservices" >
+                            {% include 'partials/blogs.html' %}
+                        </div>
+                                       
+
+                <!-- /Hotel Booking -->
+
+            </div>
+        </div>
+    </div>
+    <!-- /Page Wrapper -->
+
+
+{% include 'foot.html' %}
+<script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    });
+</script>
+{% include 'footer.html' %}
+
+    <!-- Cursor -->
+    <div class="xb-cursor tx-js-cursor">
+        <div class="xb-cursor-wrapper">
+            <div class="xb-cursor--follower xb-js-follower"></div>
+        </div>
+    </div>
+    <!-- /Cursor -->
+
+    <div class="back-to-top">
+        <a class="back-to-top-icon align-items-center justify-content-center d-flex"  href="#top"><i class="fa-solid fa-arrow-up"></i></a>
+    </div>
+
+
+    <!-- Jquery JS -->
+    <script src="{% static 'assets/js/jquery-3.7.1.min.js' %}" type=""></script>
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Wow JS -->
+    <script src="{% static 'assets/js/wow.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- MeanMenu Js -->
+    <script src="{% static 'assets/js/jquery.meanmenu.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Swiper Js -->
+    <script src="{% static 'assets/plugins/owlcarousel/owl.carousel.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Fancybox JS -->
+    <script src="{% static 'assets/plugins/fancybox/jquery.fancybox.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Counter JS -->
+    <script src="{% static 'assets/js/jquery.counterup.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+    <script src="{% static 'assets/js/jquery.waypoints.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Datepicker Core JS -->
+    <script src="{% static 'assets/plugins/moment/moment.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+    <script src="{% static 'assets/js/bootstrap-datetimepicker.min.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- cursor JS -->
+    <script src="{% static 'assets/js/cursor.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Script JS -->
+    <script src="{% static 'assets/js/script.js' %}" type="45caf2e60a81b705632d21fa-text/javascript"></script>
+
+    <!-- Script JS
+    <script src="{% static 'assets/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js' %}" data-cf-settings="45caf2e60a81b705632d21fa-|49" defer></script>
+     -->
+
+
+     
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<script>
+    document.body.addEventListener('mysuccess', function(evt) {
+    Toastify({
+        text: "प्रोफाइल अपडेट हो गई भाई! ✅",
+        duration: 3000,
+        gravity: "top", 
+        position: "right",
+        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+    }).showToast();
+});
+</script>
+
+<script>
+    document.body.addEventListener('failed', function(evt) {
+    Toastify({
+        text: "Error happened",
+        duration: 3000,
+        gravity: "top", 
+        position: "right",
+        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+    }).showToast();
+});
+</script>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        {% if message.tags %}
+    <script>
+Toastify({
+  text: " {{ message }}",
+  duration: 3000,
+  destination: "https://github.com/apvarun/toastify-js",
+  newWindow: true,
+  close: true,
+  gravity: "top", // `top` or `bottom`
+  position: "right", // `left`, `center` or `right`
+  stopOnFocus: true, // Prevents dismissing of toast on hover
+  style: {
+    background: "linear-gradient(to right, #00b09b, #96c93d)",
+  },
+  onClick: function(){} // Callback after click
+}).showToast();
+    </script>
+    {% endif %}
+    {% endfor %}
+</ul>
+{% endif %}
+

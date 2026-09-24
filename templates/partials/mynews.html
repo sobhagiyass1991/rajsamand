@@ -1,0 +1,12 @@
+{% load humanize %}
+<tr id="news-{{ x.id }}">
+    <td>{{ x.title }}</td>
+    <td>{{ x.created_at }} ({{ x.created_at|naturalday }} ago )</td>
+    <td>{{ x.updated_at }} {{ x.updated_at|naturalday }}</td>
+    <td>{{ x.status }}</td>
+    <td><button class="btn btn-danger" 
+        hx-get="{% url 'news:getedit' x.id  %}" 
+        hx-target="#editnews" 
+        hx-swap="outerHTML"
+        hx-vals='{"editid": "{{ x.id }}"}'>Edit</button></td>
+</tr>

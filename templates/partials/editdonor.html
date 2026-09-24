@@ -1,0 +1,61 @@
+<p>Here is the form for edit</p>
+
+<div id="editdonor"
+     hx-on::after-request="this.innerHTML=''">
+
+    {{ editform.instance.id }}
+
+    <form hx-post="{% url 'blood:saveedit' editform.instance.id %}"
+          hx-target="#donor-{{ editform.instance.id }}"
+          hx-swap="outerHTML"
+          hx-indicator="#spinner"
+          enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {% include 'partials/spinner.html' %}
+
+        <div class="alert alert-danger alert-dismissible d-flex align-items-center border-0 mb-4 fade show">
+            <i class="isax isax-info-circle5 me-2"></i>
+
+            {{ editform.errors }}
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="row">
+
+            {% for field in editform %}
+
+                <div class="col-md-6">
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            {{ field.label_tag }}
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        {{ field }}
+                        {{ field.name }}
+
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Send Message
+        </button>
+
+    </form>
+
+</div>
+
+{% include 'strips.html' %}

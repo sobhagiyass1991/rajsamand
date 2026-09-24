@@ -1,0 +1,38 @@
+<div id="error-box"></div>
+<div class="card settings mb-0" id="addmarks">
+<div id="myform" hx-on::after-request="document.getElementById('myform').innerHTML=''">
+<form method="post" 
+	 hx-post="{% url 'accounts:savemarks' %}"
+	 hx-target="#mark-table-body"
+     hx-swap="afterbegin" 
+     hx-indicator="#spinner"
+     hx-on::after-request="this.reset()"
+	 enctype="multipart/form-data">
+
+	{% include 'partials/spinner.html' %}
+
+		{% csrf_token %}
+
+                    <div class="row gy-2">
+                                    {% for field in form %} 
+                                    <div class="col-md-4">
+                                        {{ field.errors }}
+                                        <div class="mb-3">
+                                            <label class="form-label">  {{ field.label_tag }} <span
+                                                    class="text-danger">*</span></label>
+                                            {{ field }}
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                        <!-- Django form fields -->
+                        <div class="col-12">
+                        </div>
+
+                    </div>
+
+		<div class="col">
+			<button type="submit" class="btn btn-primary btn-round">Subscribe</button>
+		</div>
+	</div>
+</form>
+</div>

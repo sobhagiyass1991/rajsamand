@@ -1,5 +1,7 @@
 {% load static %}
-{% include 'header.html' %}
+{% include 'sparkheader.html' %}
+<div class="main-wrapper">
+<div class="content">
     <!-- Page Wrapper -->
     <div class="content">
         <div class="container">
@@ -18,7 +20,7 @@
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <h6>My Profile</h6>
                             <div class="d-flex align-items-center justify-content-center">
-                                <button type="button" hx-get="{% url 'main:lssems' %}" 
+                                <button type="button" hx-get="{% url 'localservices:lssems' %}" 
                                                       hx-target="#addserviceform" 
                                                       hx-swap="outerHTML" 
                                                       hx-trigger="click" 
@@ -49,7 +51,7 @@
         event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
     });
 </script>
-{% include 'footer.html' %}
+{% include 'sparkfooter.html' %}
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
@@ -102,3 +104,4 @@ Toastify({
 </ul>
 {% endif %}
 
+</div>

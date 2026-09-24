@@ -1,0 +1,165 @@
+                    <!-- Car-Booking List -->
+                    <div class="card hotel-list"  id="lssemsservices">
+                        <div class="card-body p-0">
+                            <div class="list-header d-flex align-items-center justify-content-between flex-wrap">
+                                <h6 class="">Booking List</h6>
+                                <div class="d-flex align-items-center flex-wrap">
+                                    <div class="input-icon-start  me-2 position-relative">
+                                        <span class="icon-addon">
+                                            <i class="isax isax-search-normal-1 fs-14"></i>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="Search">
+                                    </div>
+                                    <div class="dropdown me-3">
+                                        <a href="#"
+                                            class="dropdown-toggle text-gray-6 btn  rounded border d-inline-flex align-items-center"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            Tour Type
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end p-3">
+                                            <li>
+                                                <a href="#" class="dropdown-item rounded-1">Adventure Tourism</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="dropdown-item rounded-1">Escorted Tour</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="dropdown-item rounded-1">Ground Tour</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="dropdown me-3">
+                                        <a href="#"
+                                            class="dropdown-toggle text-gray-6 btn  rounded border d-inline-flex align-items-center"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            Status
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end p-3">
+                                            <li>
+                                                <a href="#" class="dropdown-item rounded-1">Upcoming</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="dropdown-item rounded-1">Pending</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="dropdown-item rounded-1">Cancelled</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="dropdown-item rounded-1">Completed</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="d-flex align-items-center sort-by">
+                                        <span class="fs-14 text-gray-9 fw-medium">Sort By :</span>
+                                        <div class="dropdown">
+                                            <a href="#"
+                                                class="dropdown-toggle text-gray-6 btn  rounded d-inline-flex align-items-center"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                Recommended
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-end p-3">
+                                                <li>
+                                                    <a href="#" class="dropdown-item rounded-1">Recently Added</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item rounded-1">Ascending</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item rounded-1">Desending</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item rounded-1">Last Month</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item rounded-1">Last 7 Days</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- Hotel List -->
+                            <div class="custom-datatable-filter table-responsive">
+                                <table class="table datatable">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Created</th>
+                                            <th>Updated</th>
+                                            <th>Status</th>
+                                            <th>Edit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="news-table-body">
+                                        {% for x in news %}
+                                            {% include 'partials/mynews.html' %}
+                                        {% empty %}
+                                            <tr>
+                                                <td colspan="3" class="text-center py-4">No News found.</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /Hotel List -->
+
+                        </div>
+                    </div>
+                    <!-- /Car-Booking List -->
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+                    <div class="table-paginate d-flex justify-content-between align-items-center flex-wrap row-gap-3">
+                        <div class="value d-flex align-items-center">
+                            <span>Show</span>
+                            <select>
+                                <option>5</option>
+                                <option>10</option>
+                                <option>20</option>
+                            </select>
+                            <span>entries</span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <a href="#"><span class="me-3"><i class="isax isax-arrow-left-2"></i></span></a>
+                            <nav aria-label="Page navigation">
+                                <ul class="paginations d-flex justify-content-center align-items-center">
+        {% if page_obj.has_previous %}
+                                    <li class="page-item me-2"><a class="page-link-1 text-danger d-flex justify-content-center align-items-center "
+ href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+                                    <!--<li class="page-item me-2"><a
+                                            class="page-link-1 active d-flex justify-content-center align-items-center "
+                                            href="?page=1">{{ page_obj.number }}</a></li>-->
+        {% endif %}
+
+                                    <li class="page-link-1 active d-flex justify-content-center align-items-center  page-item me-2">
+                                                <span class="current">{{ page_obj.number }}
+        </span></li>
+        {% if page_obj.has_next %}
+                                    <!--<li class="page-item "><a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;{{ page_obj.paginator.num_pages }}</a></li>-->
+                                    <li class="page-item "><a
+                                            class="page-link-1 text-success d-flex justify-content-center align-items-center"
+                                            href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+        {% endif %}
+                                </ul>
+                            </nav>
+                            <a href="#"><span class="ms-3"><i class="isax isax-arrow-right-3"></i></span></a>
+                        </div>
+                    </div>

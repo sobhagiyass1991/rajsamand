@@ -133,7 +133,8 @@ header {
 body {
   font-family: "IBM Plex Sans", sans-serif;
   font-size: 16px;
-  color: #4E5561;
+  #color: #4E5561;
+  color: #E64A19;
   line-height: 1.5;
   background-color: #fff;
   overflow-y: auto;
@@ -19238,5 +19239,3 @@ table.table.dataTable > thead > tr th {
 .datatable-paginate .dataTables_paginate:first-child {
   display: block !important;
 }
-
-/*# sourceMappingURL=style.css.map */

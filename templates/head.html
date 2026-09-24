@@ -88,5 +88,10 @@
 <script src="{% static 'htmx/htmx.js' %}"></script>
   <!-- Ekko Lightbox -->
   <link rel="stylesheet" href="{% static 'assets/plugins/ekko-lightbox/ekko-lightbox.css' %}">
-   
+
+{{ editform.media }}
+{{ form.media }}
+
 </head>
+ <!--<body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>-->
+    

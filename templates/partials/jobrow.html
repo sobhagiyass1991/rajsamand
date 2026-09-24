@@ -1,0 +1,54 @@
+<tr id="job-{{ job.id }}">
+   
+    <th scope="row">{{ job.id}}</th>
+    <td>{{ job.postname }} {{ job.type }} {{ job.posts }}</td>
+    <td>{{ job.address }}  {{ job.description}}  {{ job.tehsil }} {{ job.salary }}</td>
+    <td>
+        {% if job.is_active %}
+            <span class="badge badge-success">Active</span>
+        {% else %}
+            <span class="badge badge-danger">Inactive</span>
+        {% endif %}
+    </td>
+    <td>{{ job.role.name }} 
+
+{% for sub in job.teacher.subject.all %}
+    {{ sub.name }}
+{% endfor %}
+
+{% for cname in job.teacher.classname.all %}
+    {{ cname.name }}
+{% endfor %}
+
+    </td>
+    <td>
+        {% if request.user.role.name == 'School' %}
+        <button 
+            hx-get="{% url 'accounts:getteacher' job.id %}" 
+            hx-target="#teacherform"
+            hx-swap="outerHTML"
+            class="btn btn-sm btn-danger">
+            Edit this user
+        </button>
+		{% endif %}
+    </td>
+    <td>
+
+        <button 
+            hx-get="{% url 'accounts:getjob' job.id %}" 
+            hx-target="#jobform"
+            hx-swap="outerHTML"
+            class="btn btn-sm btn-danger">
+            Edit this job {{ job.id}}
+        </button>
+    </td>
+    <td>    
+        <button 
+            hx-get="{% url 'accounts:usersdetails' job.id %}" 
+            hx-target="#userdetails"
+            hx-swap="outerHTML"
+            class="btn btn-sm btn-info">
+            Details
+        </button>
+    </td>
+</tr>

@@ -1,18 +1,22 @@
-<table class="table">
-<thead class="thead-dark">
-		<button hx-get="{% url 'accounts:adduser' %}"
-				hx-target="#adduser"
-				hx-swap="outerHTML" 
-				type="button" class="btn btn-block col-md-3 btn-success">Add User </button>
-<tr>
-	<th scope="col"> 		 #	</th>
-	<th scope="col"> 		 First	</th>
-	<th scope="col">		 Last	</th>
-	<th scope="col"> 		 Handle 	</th>
-	<th scope="col"> 		 Handle 	</th>
-</tr>
-</thead>
-<tbody id="user-table-body">
-	{% include 'partials/usersrow.html' %}
-</tbody>
-</table>
+								<div class="card-header">
+
+									<h5 class="card-title mb-0">Latest Projects</h5>
+								</div>
+								<table class="table table-hover my-0">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th class="d-none d-xl-table-cell">Start Date</th>
+											<th class="d-none d-xl-table-cell">End Date</th>
+											<th>Status</th>
+											<th class="d-none d-md-table-cell">Assignee</th>
+											<th class="d-none d-md-table-cell">Assignee</th>
+											<th class="d-none d-md-table-cell">Assignee</th>
+										</tr>
+									</thead>
+									<tbody id="user-table-body">
+										{% for usr in users %}
+											{% include 'partials/usersrow.html' %}
+										{% endfor %}
+									</tbody>
+								</table>

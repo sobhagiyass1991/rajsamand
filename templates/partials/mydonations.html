@@ -1,0 +1,22 @@
+{% load humanize %}
+<tr id="donation-{{ x.id }}">
+    <td>{{ x.donorname.name }}</td>
+    <td>{{ x.blood_group }}</td>
+    <td>{{ x.volume }}</td>
+    <td>{{ x.address }}</td>
+    <td>{{ x.created_at }} ({{ x.created_at|naturalday }} ago ) {{ x.updated_at }} {{ x.updated_at|naturalday }}</td>
+    <td>{{ x.status }}</td>
+    <td>
+        <button class="btn btn-info" 
+                hx-get="{% if x.id %}{% url 'blood:geteditdonation' x.id  %}{% endif %}" 
+                hx-target="#editdonationform" 
+                hx-swap="outerHTML">Edit
+        </button>
+        <button class="btn btn-danger" 
+                hx-delete="{% if x.id %}{% url 'blood:delete' x.id  %}{% endif %}" 
+                hx-target="#donor-{{ x.id }}"
+                hx-swap="delete"
+                hx-confirm="Are you sure you wish to delete your account?">delete
+        </button>
+    </td>
+</tr>

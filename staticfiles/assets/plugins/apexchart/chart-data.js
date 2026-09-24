@@ -400,7 +400,7 @@ $(document).ready(function () {
       },
       colors: ['#212E47', '#3538CD', '#0E9384', '#CF3425', '#98AA30'],
       series: [25, 15, 35, 5, 20],
-      labels: ['Cruise', 'Cars', 'Hotels', 'Tour','Flights'],
+      labels: ['Users', 'Cars', 'Hotels', 'Tour','Flights'],
       plotOptions: {
         pie: {
           donut: {
@@ -2773,7 +2773,7 @@ if ($('#plan-overview').length > 0) {
 
    //Tours Plan
    if ($('#tours_chart').length > 0) {
-    let originalSeries = [9, 8, 6, 4];
+    let originalSeries = [{{users}}, 8, 6, 25];
     let maxValue = 10;
   
     // Convert each series value to a percentage of maxValue
@@ -2818,7 +2818,7 @@ if ($('#plan-overview').length > 0) {
     }
   },
   colors: ['#155EEF', '#212E47', '#98AA30', '#CF3425'],
-  labels: ['Hotels', 'Cars', 'Tours', 'Flights'],
+  labels: ['Users', 'Cffars', 'ffTours', 'ffFlights'],
   responsive: [{
     breakpoint: 480,
     options: {

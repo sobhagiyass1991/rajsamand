@@ -1,0 +1,105 @@
+{% load static %}
+{{ editform.media.css }}
+{{ form.media.css }}
+<div id="editestate" hx-on::after-request="document.getElementById('editestate').innerHTML=''">
+    <!-- START: Form Component Row Grid Layout -->
+    <!-- this is all form space -->
+    <!-- Page Wrapper -->
+    <div class="content">
+        <div class="container">
+            <div class="row">
+
+                <!-- Sidebar -->
+                <div class="col-lg-3 theiaStickySidebar">
+                    <div class="card border-0 mb-4 mb-lg-0">
+                        <div class="card-body">
+                            <div>
+                                <h5 class="mb-3">Add Cruise</h5>
+                                <ul class="add-tab-list">
+                                    <li><a href="#basic_info" class="active">Basic Info</a></li>
+                                    <li><a href="#documents_requirement">Documents Requirement</a></li>
+                                    <li><a href="#additional_requirement">Additional Requirement</a></li>
+                                    <li><a href="#conditional_requirement">Conditional Requirement</a></li>
+                                    <li><a href="#important_note">Important Note</a></li>
+                                    <li><a href="#common_reasons_for_rejection">Common Reasons for Rejection</a></li>
+                                    <li><a href="#description">Description</a></li>
+                                    <li><a href="#faq">FAQ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Sidebar -->
+                <div class="col-lg-9">
+                    <form hx-post="{% url 'estates:saveedit' editform.instance.id %}"
+                        hx-target="#estates-{{ editform.instance.id }}" 
+                        hx-swap="outerHTML"
+                        enctype="multipart/form-data">
+
+                        {% csrf_token %}
+
+
+                        {% include 'partials/spinner.html' %}
+
+                        <div
+                            class="alert alert-danger alert-dismissible d-flex align-items-center border-0 mb-4 fade show">
+                            <i class="isax isax-info-circle5 me-2"></i> {{ editform.errors }} edit nahi
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i
+                                    class="fas fa-xmark"></i></button>
+                        </div>
+                        <div class="card shadow-none" id="basic_info">
+                            <div class="card-header">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h6 class="fs-18">Basic Info</h6>
+                                </div>
+                            </div>
+                            <div class="card-body pb-1">
+                                <div class="row">
+                                    {% for field in editform %}
+                                    {{ field.errors }}
+                                    <div class="col-md-6">
+
+                                        <div class="mb-3">
+                                            <label class="form-label"> {{ field.label_tag }} <span
+                                                    class="text-danger ms-1">*</span></label>
+                                            {{ field }}
+                                            {% if field.help_text %}
+                                            <p class="help" id="{{ field.auto_id }}_helptext">
+                                                {{ field.help_text|safe }}
+                                            </p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Wrapper -->
+
+
+    <br><br><br><br><br><br><br><br><br><br>
+
+
+    <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+</div>
+
+</div>
+
+
+
+
+{% include 'strips.html' %}
+
+
+{{ editform.media.js }}
+{{ form.media.js }}
+</div>

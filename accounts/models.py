@@ -3,6 +3,8 @@ import random
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 # Create your models here.
+from main.models import Tehsil
+from ckeditor.fields import RichTextField
 
 class Role(models.Model):
       name = models.CharField(max_length=100, unique=True)
@@ -50,7 +52,8 @@ class User(AbstractUser):
     profile_pic = models.ImageField(upload_to="profiles/", blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS, default='New', null=True, blank=True)
     role = models.ForeignKey(Role, on_delete=models.SET_NULL, null = True, blank = True)
-    
+    parent = models.ForeignKey('self', on_delete=models.SET_NULL, null = True, blank = True)
+
     class Meta:
        db_table = "accounts_users"
 
@@ -89,6 +92,26 @@ class SrijanModule(models.Model):
 class Sample(models.Model):
     first_name = models.CharField(max_length=100)        
     last_name = models.CharField(max_length=100)        
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"{self.first_name}"
+    
+
+
+class AccountType(models.Model):
+    name_hi = models.CharField(max_length=255)
+    name_en = models.CharField(max_length=255)
+    description_hi = models.TextField(null=True, blank=True)
+    description_en = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to="images/", blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    status = models.BooleanField()
+
+    class Meta:
+        db_table = "accounts_account_type"
+
+    def __str__(self):
+        return f"{self.name_hi} {self.name_en}"

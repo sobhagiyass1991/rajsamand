@@ -1,0 +1,24 @@
+    <!-- START: Form Component Row Grid Layout -->
+    <div class="row g-4 mb-4">
+
+      <!-- Column 1: Basic controls -->
+      <div class="col-12 col-lg-6">
+        <div class="card border-light shadow-sm p-4 h-100">
+          <h5 class="card-title mb-4">Basic Fields</h5>
+
+          <!-- Text input -->
+                                    {% for field in editform %}
+          <div class="mb-3">
+            <label for="basicText" class="form-label-custom">{{ field.label_tag }}</label>
+                                                        {{ field }}
+                                                        {% if field.name != "type" %}
+                                                            {% for radio in editform.type %}
+                                                                {{ radio }}
+                                                            {% endfor %}
+                                                        {% endif %}   
+          </div>
+                                    {% endfor %}
+
+        </div>
+      </div>
+    </div>

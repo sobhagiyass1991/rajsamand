@@ -1,0 +1,74 @@
+{% load static %}
+                                                                                       {{ editform.media.css }}
+                                                                                       {{ form.media.css }}
+<!-- Renders with correct typography, table, code block styles -->
+<p> Here is the form for edit the blogs</p>
+                                <div id="editblog" hx-on::after-request="document.getElementById('editblog').innerHTML=''">
+                                <form hx-post="{% url 'blogs:saveedit' editform.instance.id %}"
+                                      hx-target="#blog-{{ editform.instance.id }}"
+                                      hx-swap="outerHTML"
+                                      hx-on::after-request="this.reset()"
+                                      enctype="multipart/form-data">
+
+                                {% csrf_token %}
+
+                    <div class="alert alert-danger alert-dismissible d-flex align-items-center border-0 mb-4 fade show">
+                        <i class="isax isax-info-circle5 me-2"></i> {{ form.errors }} edit nahi 
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i
+                                class="fas fa-xmark"></i></button>
+                    </div>
+                                   
+                                
+                                    <div class="row">
+                                    {% for field in editform %}
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">{{ field.label_tag }} First Name <span
+                                                    class="text-danger">*</span></label>
+                                                                                       {{ field }}
+                                                                                       {{ field.name }}
+
+                                    
+
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    </div>
+                                    <!--
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Last Name <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Email <span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Phone <span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Message <span class="text-danger">*</span></label>
+                                            <textarea class="form-control" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                -->
+                                </div>
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                            </form>
+                            </div>
+
+                        </div>                            
+                                                {% include 'strips.html' %}
+                                                
+
+                                                                                       {{ editform.media.js }}
+                                                                                       {{ form.media.js }}

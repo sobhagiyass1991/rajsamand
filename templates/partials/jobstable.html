@@ -1,0 +1,29 @@
+User: {{ user }}
+ID: {{ user.id }}
+		<button hx-get="{% url 'accounts:addjob' %}"
+				hx-target="#addjob"
+				hx-swap="outerHTML" 
+				type="button" class="btn btn-block col-md-3 btn-success">Add User </button>
+
+								<div class="card-header">
+
+									<h5 class="card-title mb-0">Latest Projects</h5>
+								</div>
+								<table class="table table-hover my-0">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th class="d-none d-xl-table-cell">Start Date</th>
+											<th class="d-none d-xl-table-cell">End Date</th>
+											<th>Status</th>
+											<th class="d-none d-md-table-cell">Assignee</th>
+											<th class="d-none d-md-table-cell">Assignee</th>
+											<th class="d-none d-md-table-cell">Assignee</th>
+										</tr>
+									</thead>
+									<tbody id="job-table-body">
+										{% for job in joblist %}
+											{% include 'partials/jobrow.html' %}
+										{% endfor %}
+									</tbody>
+								</table>

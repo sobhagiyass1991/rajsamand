@@ -1,0 +1,30 @@
+{% load humanize %}
+<tr id="videos-{{ x.id }}">
+    <td>{{ x.title }}</td>
+    <td>{% if x.video_file  %}
+
+<video width="120" height="140" controls>
+  <source src="{{ x.video_file.url }}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+    {% endif %}
+    </td>
+    <td>{{ x.isbn }}</td>
+    <td>{{ x.publisher }}</td>
+    <td>{{ x.created_at }} ({{ x.created_at|naturalday }} ago ) {{ x.updated_at }} {{ x.updated_at|naturalday }}</td>
+    <td>{{ x.status }}</td>
+    <td>
+        <button class="btn btn-info" 
+                hx-get="{% if x.id %}{% url 'videos:getedit' x.id  %}{% endif %}" 
+                hx-target="#editvideo"
+                hx-encoding="multipart/form-data"
+                hx-swap="outerHTML">Edit
+        </button>
+        <button class="btn btn-danger" 
+                hx-delete="{% if x.id %}{% url 'blood:delete' x.id  %}{% endif %}" 
+                hx-target="#donor-{{ x.id }}"
+                hx-swap="delete"
+                hx-confirm="Are you sure you wish to delete your account?">delete
+        </button>
+    </td>
+</tr>

@@ -7,7 +7,6 @@ from .views import deity, fairs ,festivals, paintings , helpline, howtoreach, ec
 from .views import representatives, whoiswho, dprofile, demography, constituencies,  events, districtstructure, disadmin, pureslider 
 #from .views import pandas, logout, dashboard, profile, profile_settings, sample_post, example, schemeview
 #from .views import contacts, search_contacts, create_contact, edit_contact, delete_contact, welcome , venues
-from .views import lssemsindex, lssems, lssemsedit, reportlab, testing, indexx
 #, lssemsservices
 
 app_name = 'main'
@@ -16,12 +15,7 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('geography/', geography, name='geography'),
-    path('lssemsindex/', lssemsindex, name='lssemsindex'),
-    path('lssems/', lssems, name='lssems'),
-    path('lssemsedit/<int:id>/', lssemsedit, name='lssemsedit'),
-    path('reportlab/', reportlab, name='reportlab'),
     path('physiography/', physiography, name='physiography'),
-    path('testing/', testing, name='testing'),
     path('mines/', mines, name='mines'),
     path('climate/', climate, name='climate'),
     path('rivers/', rivers, name='rivers'),
@@ -53,7 +47,8 @@ urlpatterns = [
     path("constituencies/" ,constituencies , name="constituencies"),
     path("events/" ,events , name="events"),
     path("pureslider/" , pureslider, name="pureslider"),
-    path("indexx/" , indexx, name="indexx"),
+    #path("indexx/" , indexx, name="indexx"),
+    #path("create_contact/" , create_contact, name="create_contact"),
     
 ]
 

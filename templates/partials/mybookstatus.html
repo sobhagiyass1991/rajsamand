@@ -1,0 +1,23 @@
+{% load humanize %}
+<tr id="bookstatus-{{ x.id }}">
+    <td>{{ x.takenby }}</td>
+    <td>{{ x.book }}</td>
+    <td>{{ x.bookstatus }}</td>
+    <td>Issued on {{ x.issuedate }} returned on {{ x.returndate }}</td>
+    <td>{{ x.created_at }} ({{ x.created_at|naturalday }} ago ) {{ x.updated_at }} {{ x.updated_at|naturalday }}</td>
+    <td>{{ x.status }}</td>
+    <td>
+        <button class="btn btn-info" 
+                hx-get="{% if x.id %}{% url 'bookbank:geteditstatus' x.id  %}{% endif %}" 
+                hx-target="#editbookstatus"
+                hx-encoding="multipart/form-data"
+                hx-swap="outerHTML">Edit
+        </button>
+        <button class="btn btn-danger" 
+                hx-delete="{% if x.id %}{% url 'blood:delete' x.id  %}{% endif %}" 
+                hx-target="#donor-{{ x.id }}"
+                hx-swap="delete"
+                hx-confirm="Are you sure you wish to delete your account?">delete
+        </button>
+    </td>
+</tr>

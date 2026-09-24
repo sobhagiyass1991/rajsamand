@@ -1,0 +1,30 @@
+User: {{ user }}
+ID: {{ user.id }}
+		<button hx-get="{% url 'accounts:addmarks' %}"
+				hx-target="#addmarks"
+				hx-swap="outerHTML" 
+				type="button" class="btn btn-block col-md-3 btn-success">Add User </button>
+
+								<div class="card-header">
+
+									<h5 class="card-title mb-0">Latest Projects</h5>
+								</div>
+								<table class="table table-hover my-0">
+									<thead>
+										<tr>
+											<th>##</th>
+											<th class="d-none d-xl-table-cell">User</th>
+											<th>Classname</th>
+											<th>Subject</th>
+											<th class="d-none d-xl-table-cell">First </th>
+											<th>Second</th>
+											<th class="d-none d-md-table-cell">Third</th>
+											<th class="d-none d-md-table-cell">Total</th>
+										</tr>
+									</thead>
+									<tbody id="mark-table-body">
+										{% for mark in marks %}
+											{% include 'partials/marksrow.html' %}
+										{% endfor %}
+									</tbody>
+								</table>

@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,12 +43,52 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     "django_htmx",
+    'autocomplete',
     "corsheaders",
     'crispy_forms',
     "crispy_bootstrap5",
+    "django_select2",
     'main',  # <-- add this line
-    'accounts'
-]
+    'accounts',
+    'advertising' , 
+    'agriculture' , 
+    'bids' , 
+    'blogs' , 
+    'blood' , 
+    'bookbank' , 
+    'business' , 
+    'chat' , 
+    'documents' , 
+    'education' , 
+    'events' , 
+    'finance' , 
+    'forums' , 
+    'government' , 
+    'healthcare' , 
+    'hospitality' , 
+    'estates' , 
+    'jobs' , 
+    'lifestyle' , 
+    'logistics' , 
+    'lostfound' , 
+    'localservices' ,
+    'news' , 
+    'payments' , 
+    'sales' , 
+    'shopping' , 
+    'social' , 
+    'tasks' , 
+    'tenders' , 
+    'travel' , 
+    'utilities' , 
+    'vehicle' , 
+    'videos' , 
+    'voting',
+    'wedding',
+    'mydjango' ,
+    'django_summernote',
+    "django_tomselect"
+ ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
@@ -63,6 +104,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_htmx.middleware.HtmxMiddleware',
+    "django_tomselect.middleware.TomSelectMiddleware",
 
 ]
 
@@ -79,6 +121,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "django_tomselect.context_processors.tomselect",
             ],
         },
     },
@@ -151,3 +194,56 @@ EMAIL_HOST_USER = 'bharatsamand3@gmail.com' # अपना असली जी�
 EMAIL_HOST_PASSWORD = 'uqxtsipudqnzwbdr' # ये तुम्हारा पासवर्ड नहीं, 'App Password' होगा
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+SUMMERNOTE_CONFIG = {
+    # Using SummernoteWidget - iframe mode, default
+    #'iframe': True,
+
+    # Or, you can set it to `False` to use SummernoteInplaceWidget by default - no iframe mode
+    # In this case, you have to load Bootstrap/jQuery sources and dependencies manually.
+    # Use this when you're already using Bootstrap/jQuery based themes.
+    #'iframe': False,
+
+    # You can put custom Summernote settings
+    'summernote': {
+        # As an example, using Summernote Air-mode
+        'airMode': False,
+
+        # Change editor size
+        'width': '500',               
+        'height': '480',
+
+        # Use proper language setting automatically (default)
+        'lang': None,
+
+        # Toolbar customization
+        # https://summernote.org/deep-dive/#custom-toolbar-popover
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+
+        # Or, explicitly set language/locale for editor
+        'lang': 'ko-KR',
+
+
+        # You can also add custom settings for external plugins
+        'print': {
+            'stylesheetUrl': '/some_static_folder/printable.css',
+        },
+        'codemirror': {
+            'mode': 'htmlmixed',
+            'lineNumbers': 'true',
+            # You have to include theme file in 'css' or 'css_for_inplace' before using it.
+            'theme': 'monokai',
+        },
+    },
+
+
+}

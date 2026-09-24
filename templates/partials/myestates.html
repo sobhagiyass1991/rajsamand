@@ -1,0 +1,17 @@
+{% load humanize %}
+<tr id="estates-{{ x.id }}">
+    <td>{{ x.title }}</td>
+    <td>{{ x.type }}</td>
+    <td>{{ x.configs }}</td>
+    <td>
+        <p>
+            {{ x.created_at }} ({{ x.created_at|naturalday }} ago ) {{ x.updated_at }} {{ x.updated_at|naturalday }}
+        </p>
+    </td>
+    <td>{{ x.status }}</td>
+    <td><button class="btn btn-danger btn-sm" 
+        hx-get="{% url 'estates:getedit' x.id  %}" 
+        hx-target="#editestate" 
+        hx-swap="outerHTML"
+        hx-vals='{"editid": "{{ x.id }}"}'>Edit</button></td>
+</tr>

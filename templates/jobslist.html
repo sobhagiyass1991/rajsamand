@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+
+<h1>Welcome to Home Page</h1>
+
+{% block content %}
+
+
+			<h1><strong>Bold title</strong> for your paragraph my role is {{ user.role.name }}</h1>
+<!--------------------------------------
+TABLE
+--------------------------------------->
+
+<button onclick="Toastify({text:'Test'}).showToast()">Click</button>
+</h3>
+
+{{form.errors}}
+<div id="jobform"></div>
+<div id="addjob" hx-swap-oob="outerHTML"></div>
+
+					<div class="row">
+						<div class="col-md-12 d-flex">
+							<div class="card flex-fill">
+								<div class="card-header">
+
+									<h5 class="card-title mb-0">Latest Projects</h5>
+								</div>
+<div id="userslist">
+    {% if joblist %}        
+    	{% include 'partials/jobstable.html' %}
+    {% else %}
+        <div role="alert" class="alert alert-error">...</div>
+    {% endif %}
+</div>
+							</div>
+						</div>
+					</div>
+
+
+<div id="userdetails"> </div>
+
+{% endblock %}
+
+{% include 'foot.html' %}
+<script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    });
+</script>
+{% include 'footer.html' %}
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
+<script>
+    document.body.addEventListener('mysuccess', function(evt) {
+    Toastify({
+        text: "प्रोफाइल अपडेट हो गई भाई! ✅",
+        duration: 3000,
+        gravity: "top", 
+        position: "right",
+        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+    }).showToast();
+});
+</script>
+
+<script>
+    document.body.addEventListener('user_failed', function(evt) {
+    Toastify({
+        text: "Error happened",
+        duration: 3000,
+        gravity: "top", 
+        position: "right",
+        style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+        }
+    }).showToast();
+});
+</script>

@@ -1,0 +1,32 @@
+    <!-- why choose -->
+    <section class="section why-choose-nine">
+        <div class="offer-sec-bg">
+            <img src="assets/img/bg/hotel-bg-02.svg" class="bg-1" alt="Img">
+            <img src="assets/img/bg/hotel-bg-04.svg" class="bg-2" alt="Img">
+        </div>
+       <div class="container">
+          <div class="section-head-nine text-center wow fadeInUp">
+            <h2>Why <span>Choose</span> Us</h2>
+            <span>Everything you need for the perfect journey</span>
+          </div>
+          <div class="row row-gap-4">
+
+
+            {% for c in category %}
+            <div class="col-md-1 d-flex wow fadeInUp">
+               <div class="why-choose-item bg-transparent-primary">
+                  <div class="home-nine-title mb-2">
+                    {{ c.name_en }}
+                  </div>
+                  <p><button hx-get="{% url 'utilities:getautility' c.id %}"
+                                                             hx-target="#getautility"
+                                                             hx-swap="innerHTML"
+                                                             class="btn btn-sm btn-rounded btn-info rebook-btn "> See 00 List </button></p>
+                </div>
+            </div>
+                                                                                            {% endfor %}
+          </div> 
+       </div>
+    </section>
+    <!-- why choose -->
+

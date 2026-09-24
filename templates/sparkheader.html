@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spark Admin - Premium Bootstrap 5 Admin Dashboard Template</title>
+
+  <!-- SEO Optimization -->
+  <meta name="description" content="Spark Admin - Premium Bootstrap 5 Admin Dashboard Template">
+  <meta name="author" content="Spark Admin Team">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="{% static 'spark/assets/images/favicon.ico' %}">
+
+  <!-- Local Third-Party Libraries (100% Offline Compatible) -->
+  <link rel="stylesheet" href="{% static 'spark/assets/libs/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'spark/assets/libs/bootstrap-icons/bootstrap-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'spark/assets/libs/apexcharts/apexcharts.css' %}">
+  <link rel="stylesheet" href="{% static 'spark/assets/libs/flatpickr/flatpickr.min.css' %}">
+
+  <!-- Main Design System & Custom Stylesheet -->
+  <link rel="stylesheet" href="{% static 'spark/assets/css/style.css' %}">
+
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <script src="https://unpkg.com/lottie-web@latest/build/player/lottie.min.js"></script>
+
+      <link href="{% static 'toastr/toastr.css' %}" rel="stylesheet"/>
+
+    
+<style>
+.lang {
+    display: none;
+}
+.lang.active {
+    display: block;
+}
+</style>
+
+
+
+<style>
+.htmx-indicator {
+    display: none; /* शुरू में छिपा रहेगा */
+}
+.htmx-request .htmx-indicator {
+    display: flex !important; /* रिक्वेस्ट जाते ही दिखेगा */
+}
+.htmx-request.htmx-indicator {
+    display: flex !important;
+}
+
+</style>
+
+<script src="{% static 'htmx/htmx.js' %}"></script>
+  <!-- Ekko Lightbox -->
+  <link rel="stylesheet" href="{% static 'assets/plugins/ekko-lightbox/ekko-lightbox.css' %}">
+
+
+<!-- Include Choices CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
+/>
+<!-- Or versioned -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/choices.js@11.1.0/public/assets/styles/choices.min.css"
+/>
+
+
+</head>
+ <!--<body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>-->
+{% include 'sparktopbar.html' %}

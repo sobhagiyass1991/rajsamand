@@ -1,13 +1,15 @@
-<p> Here is the form for edit </p>
+<p> Here is the form for edit</p>
                                 <div id="editservice">
                                 <div id="editservice" hx-on::after-request="document.getElementById('editservice').innerHTML=''">
-                                <form hx-post="{% url 'main:lssemsedit' editform.instance.id%}" 
-                                      hx-target="#table-body"
-                                      hx-swap="afterbegin" 
-                                      hx-on::after-request="this.reset()"
+                                <form hx-post="{% url 'localservices:lssemsedit' editform.instance.id%}" 
+                                      hx-target="#lssems-{{ editform.instance.id }}"
+                                      hx-swap="outerHTML"
+                                      hx-indicator="#spinner"
                                       enctype="multipart/form-data">
 
                                 {% csrf_token %}
+
+                                {% include 'partials/spinner.html' %}
 
 
                     <div class="alert alert-danger alert-dismissible d-flex align-items-center border-0 mb-4 fade show">

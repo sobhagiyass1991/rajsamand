@@ -1,0 +1,22 @@
+{% load humanize %}
+{% for x in utilities %}
+<tr>
+    <td>{{ x.subdivision.name_en }}</td>
+    <td>{{ x.category.name_en }}</td>
+    <td>{{ x.name_en }} {{ x.name_en }}</td>
+    <td>{{ x.designation }}</td>
+    <td>{{ x.mobile }}</td>
+    <td>{{ x.address }}</td>
+    {% if x.category.name_en == x.category.name_en  %}
+        {% if x.extrainfo %}
+            {% for key, value in x.extrainfo.items %}
+    <td>
+                {{ key }} : {{ value }} <br>
+    </td>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+    <td>{{ x.email }}</td>
+    
+</tr>
+{% endfor %}

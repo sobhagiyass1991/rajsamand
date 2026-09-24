@@ -31,7 +31,7 @@
                                                 class="form-control" 
                                                 placeholder="Search by Hotel Name"
                                                 name="search_venues"
-                                                hx-get="{% url 'venues' %}"
+                                                hx-get="{% url 'events:venues' %}"
                                                 hx-trigger="keyup changed delay:500ms"
                                                 hx-target="#venues-list"
                                                 hx-indicator="#spinner">
@@ -59,7 +59,7 @@
                                                                type="checkbox" 
                                                                id=""
                                                                value="{{ tehsil.name_en }}"
-                                                               hx-get="{% url 'venues' %}"
+                                                               hx-get="{% url 'events:venues' %}"
                                                                hx-include="[name='rp'][name='tehsil']"
                                                                hx-trigger="change"
                                                                hx-swap="innerHTML"
@@ -88,19 +88,31 @@
                                             <div class="accordion-body">
                                                 <div class="more-content">
                                                     <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                        <input class="form-check-input ms-0 mt-0" name="rp" type="checkbox" id="style1" value="1500" hx-get="{% url 'venues' %}"  hx-target="#venues-list" hx-trigger="change" hx-include="[name='tehsil']">
+                                                        <input class="form-check-input ms-0 mt-0" name="rp" type="checkbox" id="style1" value="1500" 
+                                                        hx-get="{% url 'events:venues' %}"  
+                                                        hx-target="#venues-list" 
+                                                        hx-trigger="change" 
+                                                        hx-include="[name='tehsil']">
                                                         <label class="form-check-label ms-2" for="style1">
                                                             0 to 1500 
                                                         </label>
                                                     </div>
                                                     <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                        <input class="form-check-input ms-0 mt-0" name="rp" type="checkbox" id="style2" value="1001_2000" hx-get="{% url 'venues' %}"  hx-target="#venues-list" hx-trigger="change" hx-include="[name='tehsil']">
+                                                        <input class="form-check-input ms-0 mt-0" name="rp" type="checkbox" id="style2" value="1001_2000" 
+                                                        hx-get="{% url 'events:venues' %}"  
+                                                        hx-target="#venues-list" 
+                                                        hx-trigger="change" 
+                                                        hx-include="[name='tehsil']">
                                                         <label class="form-check-label ms-2" for="style2">
                                                             1000 to  2000
                                                         </label>
                                                     </div>
                                                     <div class="form-check d-flex align-items-center ps-0 mb-2">
-                                                        <input class="form-check-input ms-0 mt-0" name="rp" type="checkbox" id="style3" value="2000" hx-get="{% url 'venues' %}"  hx-target="#venues-list" hx-trigger="change">
+                                                        <input class="form-check-input ms-0 mt-0" name="rp" type="checkbox" id="style3" value="2000" 
+                                                        hx-get="{% url 'events:venues' %}"  
+                                                        hx-target="#venues-list" 
+                                                        hx-trigger="change" 
+                                                        hx-include="[name='tehsil']">
                                                         <label class="form-check-label ms-2" for="style3">
                                                             Above 2000
                                                         </label>
@@ -439,8 +451,8 @@
                                                name="sort_by"
                                                value="low" 
                                                type="checkbox" 
-                                               hx-get="{% url 'venues' %}"
-                                               hx-inlcude="[name='rp'], [name='tehsil']"
+                                               hx-get="{% url 'events:venues' %}"
+                                               hx-include="[name='rp'], [name='tehsil']"
                                                hx-trigger="change"
                                                hx-swap="innerHTML"
                                                hx-target="#venues-list"
@@ -453,7 +465,7 @@
                                                     name="sort_by"
                                                     value="high" 
                                                     type="checkbox" 
-                                                    hx-get="{% url 'venues' %}"
+                                                    hx-get="{% url 'events:venues' %}"
                                                     hx-trigger="change"
                                                     hx-swap="innerHTML"
                                                     hx-target="#venues-list"
