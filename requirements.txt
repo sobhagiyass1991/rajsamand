@@ -41,6 +41,7 @@ django-trix==0.3.0
 django-unfold==0.104.1
 django-wysiwyg==0.8.0
 geteddytor_django==0.18.2
+gunicorn==26.2.0
 html5lib==1.1
 idna==3.19
 lxml==6.1.2
